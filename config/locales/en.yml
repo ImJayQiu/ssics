@@ -1,23 +1,69 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  edit_personal_information: "Edit Information"
+  index: "Index"
+  employer_id: "Employer ID"
+  name: "Name"
+  department: "Department"
+  user_role: "User Group"
+  email: "E-Mail"
+  phone_no: "Contact NO."
+  show: "Show"
+  edit: "Edit"
+  del: "Del"
+  back: "Back"
+  submit: "Submit"
+  are_you_sure: "The record will be removed forever, are you sure ?"
+  related_info: "Information"
+  organization_structure: "Organization Structure"
+  contact_list: "Contact List"
+  new: "Create New"
+  system_admin: "System Admin"
+  users_management: "Users Management"
+  issue_department: "Issue Department"
+  listing_users: "Listing Registered Users"
+  new_user: "Create New User"
+  editing_user: "Editing User"
+  showing_user: "Showing User"
+  issue_areas_setting: "Issue Areas Setting"
+  listing_issue_areas: "Listing Issue Areas"
+  editing_issue_area: "Editing Issue Area"
+  new_issue_area: "New Issue Area"
+  show_issue_area: "Show Issue Area"
+  new_area: "New Area"
+  area_code: "Area Code"
+  area_name: "Area Name"
+  remark: "Remark"
+  notices_management: "Notices Management"
+  notice_date: "Notice Date"
+  notice_title: "Title"
+  notice_content: "Notice Content"
+  notice_e_date: "Close Date"
+  notice_operator: "Operator"
+  new_notice: "Create Notice"
+  edit_general_notice: "Editing Notice"
+  new_general_notice: "Creating New Notice"
+  show_general_notice: "Show Notice Detail"
+  list_general_notice: "Listing Notices"
+  notice_today: "Daily Notices"
+  creating_issue_customer: "Creating Customer"
+  editing_issue_customer: "Editing Customer"
+  showing_issue_customer: "Showing Customer Information"
+  listing_issue_customers: "Listing Customers"
+  issue_customer_code: "Code"
+  issue_customer_name: "Name"
+  issue_customer_type: "Type"
+  new_customer: "New Customer"
+  issue_customer_address: "Customer Address"
+  issue_customer_area: "Customer Area"
+  issue_customer_contact_name: "Contact Person"
+  issue_customer_email: "E-mail"
+  issue_customer_phone: "Phone Number"
+  issue_customer_fax: "Fax Number"
+  issue_customers_management: "Customers Management"
+  issue_customer_types: "Customer Types"
+  new_issue_type: "Create New Type"
+  listing_issue_types: "Listing Types"
+  editing_issue_type: "Editing Type"
+  showing_issue_type: "Showing Type"
+  issue_customer_type: "Customer Type"
+  issue_customer_type_code: "Code"

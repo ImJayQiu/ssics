@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+<%= t('issue_customer_type_code') %> : 
+<%= @issue_type.code %>
+</p>
+
+<p>
+<%= t('issue_customer_type') %> : 
+<%= @issue_type.c_type %>
+</p>
+
+<p>
+<%= t('remark') %> : 
+<%= @issue_type.remark %>
+</p>
+
+<%= button_to t('edit'), edit_issue_type_path(@issue_type), method: :get %>
+<%= button_to t('back'), issue_types_path, method: :get %>
+

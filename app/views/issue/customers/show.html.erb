@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('showing_issue_customer') %></h1>
+
+<p>
+<%= t('issue_customer_code') %> : 
+<%= @issue_customer.code %>
+</p>
+
+<p>
+<%= t('issue_customer_name') %> : 
+<%= @issue_customer.c_name %>
+</p>
+
+<p>
+<%= t('issue_customer_address') %> : 
+<%= @issue_customer.c_address %>
+</p>
+
+<p>
+<%= t('issue_customer_area') %> : 
+<%= @issue_customer.area %>
+</p>
+
+<p>
+<%= t('issue_customer_type') %> : 
+<%= @issue_customer.c_type %>
+</p>
+
+<p>
+<%= t('issue_customer_contact_name') %> : 
+<%= @issue_customer.p_name %>
+</p>
+
+<p>
+<%= t('issue_customer_email') %> : 
+<%= @issue_customer.email %>
+</p>
+
+<p>
+<%=  t('issue_customer_phone') %> : 
+<%= @issue_customer.phone %>
+</p>
+
+<p>
+<%= t('issue_customer_fax') %> : 
+<%= @issue_customer.fax %>
+</p>
+<p>
+<%= t('remark') %><br>
+<%= simple_format(@issue_customer.remark) %>
+</p>
+
+<%= button_to t('edit'), edit_issue_customer_path(@issue_customer), method: :get %> 
+<%= button_to t('back'), issue_customers_path, method: :get %>

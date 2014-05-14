@@ -1,0 +1,24 @@
+		<div class="inner">
+
+		<% if notice %>
+			<p class="alert alert-success"><%= notice %></p>
+		<% end %>
+		<% if alert %>
+			<p class="alert alert-danger"><%= alert %></p>
+		<% end %>
+
+			<header>
+			<h2><img src="images/logo.png" alt="星暹日报" /></h2>
+			</header>
+			<p><strong>星暹日报</strong>内部管理系统<br />
+			Sing Sian Yer Pao<br />Internal Management System</p>
+			<footer>
+			<ul class="buttons vertical">
+				<li>
+				<%= link_to "帐 号 注 册 | Sign Up ", new_user_registration_path, :class=>"button fit scrolly" %>
+				<%= link_to "系 统 登 录 | Log In", new_user_session_path, :class=>"button fit scrolly" %>
+				</li>
+			</ul>
+			</footer>
+
+		</div>

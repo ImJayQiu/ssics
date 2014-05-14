@@ -1,0 +1,58 @@
+<h2>Edit <%= resource_name.to_s.humanize %></h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+	<%= devise_error_messages! %>
+
+	<div><%= f.label t('employer_id') %><br />
+		<%= f.text_field :employer_id, autofocus: true %></div>
+	<br></br>
+
+	<div><%= f.label t('name') %><br />
+		<%= f.text_field :name, autofocus: true %></div>
+	<br></br>
+
+	<div><%= f.label t('department')  %><br />
+		<%= f.text_field :department, autofocus: true %></div>
+	<br></br>
+
+	<div><%= f.label t('phone_no') %><br />
+		<%= f.text_field :phone_no, autofocus: true %></div>
+	<br></br>
+
+	<div><%= f.label t('email') %><br />
+		<%= f.email_field :email, autofocus: true %></div>
+	<br></br>
+
+	<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+		<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+	<% end %>
+
+	<div>修 改 密 码 | Change Password
+		<br/> <i>(leave blank if you don't want to change it)</i>
+		<br/> <i>(若不更改密码，则无需填写)</i>
+		<%= f.password_field :password, autocomplete: "off" %></div>
+	<br></br>
+
+	<div>请 再 输 入 一 次 新 密 码 | Password Confirmation
+		<br/> <i>(leave blank if you don't want to change it)</i>
+		<br/> <i>(若不更改密码，则无需填写)</i>
+		<%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+	<br></br>
+
+	<div><%= f.label :current_password %>
+		<br/> <i>(we need your current password to confirm your changes)</i>
+		<br/> <i>(请输入当前帐号密码，以保存修改的资料)</i>
+		<%= f.password_field :current_password, autocomplete: "off" %></div>
+	<br></br>
+
+	<div><%= f.submit t('submit') %></div>
+<% end %>
+
+<br></br>
+
+<h3>Cancel my account</h3>
+
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+<%= link_to "Back", :back %>
+

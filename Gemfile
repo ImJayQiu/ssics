@@ -1,21 +1,31 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
+
+# Use for log analysis
+# method: request-log-analyzer log/production.log
+# html output:  request-log-analyzer log/production.log --output html --file log.html  
+gem 'request-log-analyzer', '~> 1.13.0'
+
+# help to kill N+1 queries and unused eager loading.
+gem 'bullet', '~> 4.8.0'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+
 # Use CoffeeScript for .js.coffee assets and views
 #gem 'coffee-rails', '~> 4.0.0'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.1'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -41,3 +51,5 @@ gem 'spring',        group: :development
 # use devise for user management
 gem 'devise'
 
+# use cancan to build authorization system
+gem 'cancan'

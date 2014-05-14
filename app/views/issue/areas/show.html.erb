@@ -1,0 +1,21 @@
+
+<h1><%= t('show_issue_area') %></h1>
+
+<p>
+<strong><%= t('area_code') %> : </strong>
+  <%= @issue_area.code %>
+</p>
+
+<p>
+<strong><%= t('area_name') %> : </strong>
+  <%= @issue_area.area %>
+</p>
+
+<p>
+<strong><%= t('remark') %> : </strong>
+  <%= @issue_area.remark %>
+</p>
+
+
+<%= button_to t('edit'), edit_issue_area_path(@issue_area), method: :get %> 
+<%= button_to t('back'), issue_areas_path, method: :get %>

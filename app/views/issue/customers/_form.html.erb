@@ -1,0 +1,67 @@
+<%= form_for(@issue_customer) do |f| %>
+	<% if @issue_customer.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@issue_customer.errors.count, "error") %> prohibited this issue_customer from being saved:</h2>
+
+			<ul>
+				<% @issue_customer.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label t('issue_customer_code') %><br>
+		<%= f.text_field :code %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_name') %><br>
+		<%= f.text_field :c_name %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_address') %><br>
+		<%= f.text_field :c_address %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_area') %><br>
+		<%= f.collection_select :area, Issue::Area.all.sort, :area, :area, prompt: "-Please Select-" %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_type') %><br>
+		<%= f.collection_select :c_type, Issue::Type.all.sort, :c_type, :c_type, prompt: "-Please Select-" %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_contact_name') %><br>
+		<%= f.text_field :p_name %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_email') %><br>
+		<%= f.text_field :email %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_phone') %><br>
+		<%= f.text_field :phone %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('issue_customer_fax') %><br>
+		<%= f.text_field :fax %>
+	</div>
+	<p></p>
+	<div class="field">
+		<%= f.label t('remark') %><br>
+		<%= f.text_field :remark %>
+	</div>
+	<p></p>
+	<div class="actions">
+		<%= f.submit t("submit") %>
+	</div>
+<% end %>

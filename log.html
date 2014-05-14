@@ -1,0 +1,680 @@
+<html><head><title>Request-log-analyzer report</title><style type="text/css">
+        body {
+        	font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	color: #4f6b72;
+        	background: #E6EAE9;
+        	padding-left:20px;
+        	padding-top:20px;
+        	padding-bottom:20px;
+        }
+
+        a {
+        	color: #c75f3e;
+        }
+
+        .color_bar {
+          border: 1px solid;
+          height:10px;
+        	background: #CAE8EA;
+        }
+
+        .rla-report-table {
+        	width: 700px;
+        	padding: 0;
+        	margin: 0;
+        	padding-bottom:10px;
+        }
+
+        caption {
+        	padding: 0 0 5px 0;
+        	width: 700px;	
+        	font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	text-align: right;
+        }
+
+        th {
+        	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	color: #4f6b72;
+        	border-right: 1px solid #C1DAD7;
+        	border-bottom: 1px solid #C1DAD7;
+        	border-top: 1px solid #C1DAD7;
+        	letter-spacing: 2px;
+        	text-transform: uppercase;
+        	text-align: left;
+        	padding: 6px 6px 6px 12px;
+        	background: #CAE8EA url(images/bg_header.jpg) no-repeat;
+        }
+
+        td {
+        	font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        	border-right: 1px solid #C1DAD7;
+        	border-bottom: 1px solid #C1DAD7;
+        	background: #fff;
+        	padding: 6px 6px 6px 12px;
+        	color: #4f6b72;
+        }
+
+        td.alt {
+        	background: #F5FAFA;
+        	color: #797268;
+        }
+        </style></head><body><h1>Request-log-analyzer summary report</h1><p>Version 1.13.0 - written by Willem van Bergen and Bart ten Brinke</p><h2>Request summary</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">Processsed File:</td>
+<td class="alt">/home/ssrpadmin/www/ssics/log/production.log</td></tr><tr><td>Parsed lines:</td>
+<td>2866</td></tr><tr><td class="alt">Skipped lines:</td>
+<td class="alt">77</td></tr><tr><td>Parsed requests:</td>
+<td>935</td></tr><tr><td class="alt">Skipped requests:</td>
+<td class="alt">0</td></tr><tr><td>Warnings:</td>
+<td>no_current_request: 77, unfinished_request_on_eof: 1</td></tr></table>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">First request:</td>
+<td class="alt">2014-04-24 13:50:01</td></tr><tr><td>Last request:</td>
+<td>2014-04-30 14:13:02</td></tr><tr><td class="alt">Total time analyzed:</td>
+<td class="alt">7 days</td></tr></table><h2>Request distribution per hour</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">  0:00</td>
+<td class="alt">5 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td>  1:00</td>
+<td>0 hits/day</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">  2:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>  3:00</td>
+<td>0 hits/day</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">  4:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>  5:00</td>
+<td>0 hits/day</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">  6:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>  7:00</td>
+<td>0 hits/day</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">  8:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>  9:00</td>
+<td>0 hits/day</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt"> 10:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td> 11:00</td>
+<td>2 hits/day</td>
+<td><div class='color_bar' style="width:1px;"/></td></tr><tr><td class="alt"> 12:00</td>
+<td class="alt">0 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td> 13:00</td>
+<td>16 hits/day</td>
+<td><div class='color_bar' style="width:20px;"/></td></tr><tr><td class="alt"> 14:00</td>
+<td class="alt">37 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:47px;"/></td></tr><tr><td> 15:00</td>
+<td>4 hits/day</td>
+<td><div class='color_bar' style="width:4px;"/></td></tr><tr><td class="alt"> 16:00</td>
+<td class="alt">5 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td> 17:00</td>
+<td>9 hits/day</td>
+<td><div class='color_bar' style="width:10px;"/></td></tr><tr><td class="alt"> 18:00</td>
+<td class="alt">5 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td> 19:00</td>
+<td>4 hits/day</td>
+<td><div class='color_bar' style="width:4px;"/></td></tr><tr><td class="alt"> 20:00</td>
+<td class="alt">40 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:50px;"/></td></tr><tr><td> 21:00</td>
+<td>12 hits/day</td>
+<td><div class='color_bar' style="width:14px;"/></td></tr><tr><td class="alt"> 22:00</td>
+<td class="alt">4 hits/day</td>
+<td class="alt"><div class='color_bar' style="width:4px;"/></td></tr><tr><td> 23:00</td>
+<td>19 hits/day</td>
+<td><div class='color_bar' style="width:23px;"/></td></tr></table><h2>Most requested</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">#.</td>
+<td class="alt">523 hits</td>
+<td class="alt">55.9%</td>
+<td class="alt"><div class='color_bar' style="width:111px;"/></td></tr><tr><td>SiteController#index.HTML</td>
+<td>211 hits</td>
+<td>22.6%</td>
+<td><div class='color_bar' style="width:45px;"/></td></tr><tr><td class="alt">Devise::SessionsController#new.HTML</td>
+<td class="alt">78 hits</td>
+<td class="alt">8.3%</td>
+<td class="alt"><div class='color_bar' style="width:16px;"/></td></tr><tr><td>Devise::RegistrationsController#new.HTML</td>
+<td>71 hits</td>
+<td>7.6%</td>
+<td><div class='color_bar' style="width:15px;"/></td></tr><tr><td class="alt">Devise::SessionsController#create.HTML</td>
+<td class="alt">36 hits</td>
+<td class="alt">3.9%</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td>SiteController#main.HTML</td>
+<td>10 hits</td>
+<td>1.1%</td>
+<td><div class='color_bar' style="width:2px;"/></td></tr><tr><td class="alt">Devise::SessionsController#destroy.HTML</td>
+<td class="alt">3 hits</td>
+<td class="alt">0.3%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr><tr><td>Devise::RegistrationsController#create.HTML</td>
+<td>2 hits</td>
+<td>0.2%</td>
+<td><div class='color_bar' style="width:0px;"/></td></tr><tr><td class="alt">Devise::PasswordsController#new.HTML</td>
+<td class="alt">1 hits</td>
+<td class="alt">0.1%</td>
+<td class="alt"><div class='color_bar' style="width:0px;"/></td></tr></table><h2>HTTP methods</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">GET</td>
+<td class="alt">897 hits</td>
+<td class="alt">95.9%</td>
+<td class="alt"><div class='color_bar' style="width:191px;"/></td></tr><tr><td>POST</td>
+<td>38 hits</td>
+<td>4.1%</td>
+<td><div class='color_bar' style="width:8px;"/></td></tr></table><h2>HTTP statuses returned</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">200</td>
+<td class="alt">288 hits</td>
+<td class="alt">69.9%</td>
+<td class="alt"><div class='color_bar' style="width:139px;"/></td></tr><tr><td>302</td>
+<td>75 hits</td>
+<td>18.2%</td>
+<td><div class='color_bar' style="width:36px;"/></td></tr><tr><td class="alt">500</td>
+<td class="alt">38 hits</td>
+<td class="alt">9.2%</td>
+<td class="alt"><div class='color_bar' style="width:18px;"/></td></tr><tr><td>401</td>
+<td>11 hits</td>
+<td>2.7%</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Request duration - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">Devise::SessionsController#create.HTML</td>
+<td class="alt">36</td>
+<td class="alt">2.68s</td>
+<td class="alt">74ms</td>
+<td class="alt">62ms</td>
+<td class="alt">2ms</td>
+<td class="alt">180ms</td>
+<td class="alt">2ms-182ms</td></tr><tr><td>SiteController#index.HTML</td>
+<td>210</td>
+<td>2.59s</td>
+<td>12ms</td>
+<td>12ms</td>
+<td>1ms</td>
+<td>71ms</td>
+<td>0ms-45ms</td></tr><tr><td class="alt">Devise::RegistrationsController#new.HTML</td>
+<td class="alt">71</td>
+<td class="alt">2.13s</td>
+<td class="alt">30ms</td>
+<td class="alt">28ms</td>
+<td class="alt">2ms</td>
+<td class="alt">118ms</td>
+<td class="alt">2ms-105ms</td></tr><tr><td>Devise::SessionsController#new.HTML</td>
+<td>78</td>
+<td>1.77s</td>
+<td>22ms</td>
+<td>48ms</td>
+<td>3ms</td>
+<td>306ms</td>
+<td>2ms-225ms</td></tr><tr><td class="alt">Devise::RegistrationsController#create.HTML</td>
+<td class="alt">2</td>
+<td class="alt">356ms</td>
+<td class="alt">178ms</td>
+<td class="alt">2ms</td>
+<td class="alt">176ms</td>
+<td class="alt">180ms</td>
+<td class="alt">174ms-182ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>10</td>
+<td>149ms</td>
+<td>14ms</td>
+<td>18ms</td>
+<td>1ms</td>
+<td>47ms</td>
+<td>0ms-47ms</td></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">59ms</td>
+<td class="alt">59ms</td>
+<td class="alt">0ms</td>
+<td class="alt">59ms</td>
+<td class="alt">59ms</td>
+<td class="alt">58ms-60ms</td></tr><tr><td>Devise::SessionsController#destroy.HTML</td>
+<td>3</td>
+<td>27ms</td>
+<td>9ms</td>
+<td>4ms</td>
+<td>6ms</td>
+<td>15ms</td>
+<td>5ms-15ms</td></tr><tr><td class="alt">Devise::PasswordsController#new.HTML</td>
+<td class="alt">1</td>
+<td class="alt">8ms</td>
+<td class="alt">8ms</td>
+<td class="alt">0ms</td>
+<td class="alt">8ms</td>
+<td class="alt">8ms</td>
+<td class="alt">7ms-8ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Request duration - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">Devise::RegistrationsController#create.HTML</td>
+<td class="alt">2</td>
+<td class="alt">356ms</td>
+<td class="alt">178ms</td>
+<td class="alt">2ms</td>
+<td class="alt">176ms</td>
+<td class="alt">180ms</td>
+<td class="alt">174ms-182ms</td></tr><tr><td>Devise::SessionsController#create.HTML</td>
+<td>36</td>
+<td>2.68s</td>
+<td>74ms</td>
+<td>62ms</td>
+<td>2ms</td>
+<td>180ms</td>
+<td>2ms-182ms</td></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">59ms</td>
+<td class="alt">59ms</td>
+<td class="alt">0ms</td>
+<td class="alt">59ms</td>
+<td class="alt">59ms</td>
+<td class="alt">58ms-60ms</td></tr><tr><td>Devise::RegistrationsController#new.HTML</td>
+<td>71</td>
+<td>2.13s</td>
+<td>30ms</td>
+<td>28ms</td>
+<td>2ms</td>
+<td>118ms</td>
+<td>2ms-105ms</td></tr><tr><td class="alt">Devise::SessionsController#new.HTML</td>
+<td class="alt">78</td>
+<td class="alt">1.77s</td>
+<td class="alt">22ms</td>
+<td class="alt">48ms</td>
+<td class="alt">3ms</td>
+<td class="alt">306ms</td>
+<td class="alt">2ms-225ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>10</td>
+<td>149ms</td>
+<td>14ms</td>
+<td>18ms</td>
+<td>1ms</td>
+<td>47ms</td>
+<td>0ms-47ms</td></tr><tr><td class="alt">SiteController#index.HTML</td>
+<td class="alt">210</td>
+<td class="alt">2.59s</td>
+<td class="alt">12ms</td>
+<td class="alt">12ms</td>
+<td class="alt">1ms</td>
+<td class="alt">71ms</td>
+<td class="alt">0ms-45ms</td></tr><tr><td>Devise::SessionsController#destroy.HTML</td>
+<td>3</td>
+<td>27ms</td>
+<td>9ms</td>
+<td>4ms</td>
+<td>6ms</td>
+<td>15ms</td>
+<td>5ms-15ms</td></tr><tr><td class="alt">Devise::PasswordsController#new.HTML</td>
+<td class="alt">1</td>
+<td class="alt">8ms</td>
+<td class="alt">8ms</td>
+<td class="alt">0ms</td>
+<td class="alt">8ms</td>
+<td class="alt">8ms</td>
+<td class="alt">7ms-8ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Partials rendering time - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">devise/shared/_links.erb</td>
+<td class="alt">190</td>
+<td class="alt">1.61s</td>
+<td class="alt">8ms</td>
+<td class="alt">16ms</td>
+<td class="alt">0ms</td>
+<td class="alt">118ms</td>
+<td class="alt">0ms-47ms</td></tr><tr><td>site/index.html.erb</td>
+<td>234</td>
+<td>361ms</td>
+<td>1ms</td>
+<td>3ms</td>
+<td>0ms</td>
+<td>29ms</td>
+<td>0ms-9ms</td></tr><tr><td class="alt">/home/ssrpadmin/.rvm/gems/ruby-2.1.0/gems/actionpack-4.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb</td>
+<td class="alt">20</td>
+<td class="alt">150ms</td>
+<td class="alt">7ms</td>
+<td class="alt">9ms</td>
+<td class="alt">1ms</td>
+<td class="alt">26ms</td>
+<td class="alt">1ms-26ms</td></tr><tr><td>/home/ssrpadmin/.rvm/gems/ruby-2.1.0/gems/devise-3.2.4/app/views/devise/shared/_links.erb</td>
+<td>6</td>
+<td>118ms</td>
+<td>19ms</td>
+<td>23ms</td>
+<td>1ms</td>
+<td>59ms</td>
+<td>1ms-60ms</td></tr><tr><td class="alt">site/main.html.erb</td>
+<td class="alt">17</td>
+<td class="alt">57ms</td>
+<td class="alt">3ms</td>
+<td class="alt">6ms</td>
+<td class="alt">0ms</td>
+<td class="alt">21ms</td>
+<td class="alt">0ms-21ms</td></tr><tr><td>devise/menu/_login_items.html.erb</td>
+<td>1</td>
+<td>29ms</td>
+<td>29ms</td>
+<td>0ms</td>
+<td>29ms</td>
+<td>29ms</td>
+<td>29ms-30ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Partials rendering time - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">devise/menu/_login_items.html.erb</td>
+<td class="alt">1</td>
+<td class="alt">29ms</td>
+<td class="alt">29ms</td>
+<td class="alt">0ms</td>
+<td class="alt">29ms</td>
+<td class="alt">29ms</td>
+<td class="alt">29ms-30ms</td></tr><tr><td>/home/ssrpadmin/.rvm/gems/ruby-2.1.0/gems/devise-3.2.4/app/views/devise/shared/_links.erb</td>
+<td>6</td>
+<td>118ms</td>
+<td>19ms</td>
+<td>23ms</td>
+<td>1ms</td>
+<td>59ms</td>
+<td>1ms-60ms</td></tr><tr><td class="alt">devise/shared/_links.erb</td>
+<td class="alt">190</td>
+<td class="alt">1.61s</td>
+<td class="alt">8ms</td>
+<td class="alt">16ms</td>
+<td class="alt">0ms</td>
+<td class="alt">118ms</td>
+<td class="alt">0ms-47ms</td></tr><tr><td>/home/ssrpadmin/.rvm/gems/ruby-2.1.0/gems/actionpack-4.1.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb</td>
+<td>20</td>
+<td>150ms</td>
+<td>7ms</td>
+<td>9ms</td>
+<td>1ms</td>
+<td>26ms</td>
+<td>1ms-26ms</td></tr><tr><td class="alt">site/main.html.erb</td>
+<td class="alt">17</td>
+<td class="alt">57ms</td>
+<td class="alt">3ms</td>
+<td class="alt">6ms</td>
+<td class="alt">0ms</td>
+<td class="alt">21ms</td>
+<td class="alt">0ms-21ms</td></tr><tr><td>site/index.html.erb</td>
+<td>234</td>
+<td>361ms</td>
+<td>1ms</td>
+<td>3ms</td>
+<td>0ms</td>
+<td>29ms</td>
+<td>0ms-9ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>View rendering time - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">Devise::RegistrationsController#new.HTML</td>
+<td class="alt">63</td>
+<td class="alt">1.17s</td>
+<td class="alt">18ms</td>
+<td class="alt">14ms</td>
+<td class="alt">2ms</td>
+<td class="alt">59ms</td>
+<td class="alt">2ms-52ms</td></tr><tr><td>SiteController#index.HTML</td>
+<td>180</td>
+<td>1.13s</td>
+<td>6ms</td>
+<td>7ms</td>
+<td>0ms</td>
+<td>54ms</td>
+<td>0ms-28ms</td></tr><tr><td class="alt">Devise::SessionsController#new.HTML</td>
+<td class="alt">34</td>
+<td class="alt">958ms</td>
+<td class="alt">28ms</td>
+<td class="alt">54ms</td>
+<td class="alt">3ms</td>
+<td class="alt">231ms</td>
+<td class="alt">3ms-232ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>9</td>
+<td>98ms</td>
+<td>10ms</td>
+<td>12ms</td>
+<td>0ms</td>
+<td>32ms</td>
+<td>0ms-33ms</td></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms</td>
+<td class="alt">0ms</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms-34ms</td></tr><tr><td>Devise::PasswordsController#new.HTML</td>
+<td>1</td>
+<td>6ms</td>
+<td>6ms</td>
+<td>0ms</td>
+<td>6ms</td>
+<td>6ms</td>
+<td>6ms-6ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>View rendering time - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms</td>
+<td class="alt">0ms</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms</td>
+<td class="alt">33ms-34ms</td></tr><tr><td>Devise::SessionsController#new.HTML</td>
+<td>34</td>
+<td>958ms</td>
+<td>28ms</td>
+<td>54ms</td>
+<td>3ms</td>
+<td>231ms</td>
+<td>3ms-232ms</td></tr><tr><td class="alt">Devise::RegistrationsController#new.HTML</td>
+<td class="alt">63</td>
+<td class="alt">1.17s</td>
+<td class="alt">18ms</td>
+<td class="alt">14ms</td>
+<td class="alt">2ms</td>
+<td class="alt">59ms</td>
+<td class="alt">2ms-52ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>9</td>
+<td>98ms</td>
+<td>10ms</td>
+<td>12ms</td>
+<td>0ms</td>
+<td>32ms</td>
+<td>0ms-33ms</td></tr><tr><td class="alt">SiteController#index.HTML</td>
+<td class="alt">180</td>
+<td class="alt">1.13s</td>
+<td class="alt">6ms</td>
+<td class="alt">7ms</td>
+<td class="alt">0ms</td>
+<td class="alt">54ms</td>
+<td class="alt">0ms-28ms</td></tr><tr><td>Devise::PasswordsController#new.HTML</td>
+<td>1</td>
+<td>6ms</td>
+<td>6ms</td>
+<td>0ms</td>
+<td>6ms</td>
+<td>6ms</td>
+<td>6ms-6ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Database time - by sum</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">Devise::RegistrationsController#new.HTML</td>
+<td class="alt">63</td>
+<td class="alt">58ms</td>
+<td class="alt">0ms</td>
+<td class="alt">1ms</td>
+<td class="alt">0ms</td>
+<td class="alt">5ms</td>
+<td class="alt">0ms-4ms</td></tr><tr><td>Devise::SessionsController#new.HTML</td>
+<td>34</td>
+<td>17ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>3ms</td>
+<td>0ms-3ms</td></tr><tr><td class="alt">SiteController#index.HTML</td>
+<td class="alt">180</td>
+<td class="alt">7ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">2ms</td>
+<td class="alt">0ms-1ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>9</td>
+<td>4ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>1ms</td>
+<td>0ms-1ms</td></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms</td>
+<td class="alt">0ms</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms-2ms</td></tr><tr><td>Devise::PasswordsController#new.HTML</td>
+<td>1</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms-0ms</td></tr></table><br/>
+<table class="rla-report-table" cellspacing="0"><tr><th>Database time - by mean</th>
+<th>Hits</th>
+<th>Sum</th>
+<th>Mean</th>
+<th>StdDev</th>
+<th>Min</th>
+<th>Max</th>
+<th>95 %tile</th></tr><tr><td class="alt">#.</td>
+<td class="alt">1</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms</td>
+<td class="alt">0ms</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms</td>
+<td class="alt">2ms-2ms</td></tr><tr><td>Devise::RegistrationsController#new.HTML</td>
+<td>63</td>
+<td>58ms</td>
+<td>0ms</td>
+<td>1ms</td>
+<td>0ms</td>
+<td>5ms</td>
+<td>0ms-4ms</td></tr><tr><td class="alt">Devise::SessionsController#new.HTML</td>
+<td class="alt">34</td>
+<td class="alt">17ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">3ms</td>
+<td class="alt">0ms-3ms</td></tr><tr><td>SiteController#main.HTML</td>
+<td>9</td>
+<td>4ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>1ms</td>
+<td>0ms-1ms</td></tr><tr><td class="alt">SiteController#index.HTML</td>
+<td class="alt">180</td>
+<td class="alt">7ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">0ms</td>
+<td class="alt">2ms</td>
+<td class="alt">0ms-1ms</td></tr><tr><td>Devise::PasswordsController#new.HTML</td>
+<td>1</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms</td>
+<td>0ms-0ms</td></tr></table><h2>Process blockers (> 1 sec duration)</h2>
+None found.
+<h2>Routing Errors</h2>
+<table class="rla-report-table" cellspacing="0"><tr><td class="alt">[GET] /javascripts/all.js</td>
+<td class="alt">73 hits</td>
+<td class="alt">16.4%</td>
+<td class="alt"><div class='color_bar' style="width:32px;"/></td></tr><tr><td>[GET] /users/css/style.css</td>
+<td>23 hits</td>
+<td>5.2%</td>
+<td><div class='color_bar' style="width:10px;"/></td></tr><tr><td class="alt">[GET] /js/jquery.min.js</td>
+<td class="alt">21 hits</td>
+<td class="alt">4.7%</td>
+<td class="alt"><div class='color_bar' style="width:9px;"/></td></tr><tr><td>[GET] /users/css/style-wide.css</td>
+<td>21 hits</td>
+<td>4.7%</td>
+<td><div class='color_bar' style="width:9px;"/></td></tr><tr><td class="alt">[GET] /images/logo.png</td>
+<td class="alt">19 hits</td>
+<td class="alt">4.3%</td>
+<td class="alt"><div class='color_bar' style="width:8px;"/></td></tr><tr><td>[GET] /images/pic03.jpg</td>
+<td>18 hits</td>
+<td>4.0%</td>
+<td><div class='color_bar' style="width:8px;"/></td></tr><tr><td class="alt">[GET] /js/jquery.dropotron.min.js</td>
+<td class="alt">18 hits</td>
+<td class="alt">4.0%</td>
+<td class="alt"><div class='color_bar' style="width:8px;"/></td></tr><tr><td>[GET] /js/init.js</td>
+<td>18 hits</td>
+<td>4.0%</td>
+<td><div class='color_bar' style="width:8px;"/></td></tr><tr><td class="alt">[GET] /images/pic01.jpg</td>
+<td class="alt">18 hits</td>
+<td class="alt">4.0%</td>
+<td class="alt"><div class='color_bar' style="width:8px;"/></td></tr><tr><td>[GET] /images/pic02.jpg</td>
+<td>17 hits</td>
+<td>3.8%</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt">[GET] /js/skel-layers.min.js</td>
+<td class="alt">17 hits</td>
+<td class="alt">3.8%</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td>[GET] /js/skel.min.js</td>
+<td>17 hits</td>
+<td>3.8%</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt">[GET] /users/js/skel.min.js</td>
+<td class="alt">16 hits</td>
+<td class="alt">3.6%</td>
+<td class="alt"><div class='color_bar' style="width:7px;"/></td></tr><tr><td>[GET] /users/js/skel-layers.min.js</td>
+<td>16 hits</td>
+<td>3.6%</td>
+<td><div class='color_bar' style="width:7px;"/></td></tr><tr><td class="alt">[GET] /images/pic04.jpg</td>
+<td class="alt">15 hits</td>
+<td class="alt">3.4%</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td>[GET] /users/js/init.js</td>
+<td>14 hits</td>
+<td>3.1%</td>
+<td><div class='color_bar' style="width:6px;"/></td></tr><tr><td class="alt">[GET] /users/js/jquery.min.js</td>
+<td class="alt">14 hits</td>
+<td class="alt">3.1%</td>
+<td class="alt"><div class='color_bar' style="width:6px;"/></td></tr><tr><td>[GET] /users/js/jquery.dropotron.min.js</td>
+<td>13 hits</td>
+<td>2.9%</td>
+<td><div class='color_bar' style="width:5px;"/></td></tr><tr><td class="alt">[GET] /main</td>
+<td class="alt">13 hits</td>
+<td class="alt">2.9%</td>
+<td class="alt"><div class='color_bar' style="width:5px;"/></td></tr><tr><td>[GET] /users/sign_out</td>
+<td>11 hits</td>
+<td>2.5%</td>
+<td><div class='color_bar' style="width:4px;"/></td></tr></table><h2>Parse warnings</h2>
+Parsable lines were encountered without a header line before it. It<br/>
+could be that logging is not setup correctly for your application.<br/>
+Visit this website for logging configuration tips:<br/>
+<a href="http://github.com/wvanbergen/request-log-analyzer/wikis/configure-logging">http://github.com/wvanbergen/request-log-analyzer/wikis/configure-logging</a><br/>
+<br/>
+<hr /><h2>Thanks for using request-log-analyzer</h2><p>For more information please visit the <a href="http://github.com/wvanbergen/request-log-analyzer">Request-log-analyzer website</a></p><p>If you need an expert who can analyze your application, mail to <a href="mailto:contact@railsdoctors.com">contact@railsdoctors.com</a> or visit us at <a href="http://railsdoctors.com">http://railsdoctors.com</a>.</p></body></html>

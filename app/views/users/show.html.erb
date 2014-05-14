@@ -1,0 +1,37 @@
+
+<h1><%= t('showing_user') %></h1>
+
+<p>
+<strong><%= t('employer_id') %> : </strong>
+<%= @user.employer_id rescue nil %>
+</p>
+
+<p>
+<strong><%= t('name') %> : </strong>
+<%= @user.name rescue nil %>
+</p>
+
+<p>
+<strong><%= t('department') %> : </strong>
+<%= @user.department rescue nil %>
+</p>
+
+<p>
+<strong><%= t('email') %> : </strong>
+<%= @user.email rescue nil %>
+</p>
+
+<p>
+<strong><%= t('user_role')  %> : </strong>
+<%= @user.role rescue nil %>
+</p>
+
+<p>
+<strong><%= t('phone_no') %> : </strong>
+<%= @user.phone_no rescue nil %>
+</p>
+
+<div style="display: inline" >
+	<%= button_to t('edit'), edit_user_path(@user), method: :get %> 
+	<%= button_to t('back'), users_path, method: :get %>
+</div>

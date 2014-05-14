@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+	<li>
+	<%= link_to '退出系统|Log out', destroy_user_session_path, :class=>"button special" %>        
+	</li>
+<% else %>
+	<li>
+	<%= link_to "帐号注册|Sign Up ", new_user_registration_path, :class=>"button special" %>
+	</li>
+<% end %>
