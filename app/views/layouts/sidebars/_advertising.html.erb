@@ -1,0 +1,20 @@
+
+<section>
+<header>
+<h4>
+	<img src="/images/icon/advertising.png" alt="advertising" />
+	<%= t('advertising_department') %>
+</h4>
+</header>
+<footer>
+<ul>
+	<% if can? :manage, :advertising_sizes  %>
+		<li>- <%= link_to t('advertising_sizes'), adv_advsizes_path %></li>
+	<% end %>
+	<% if can? :manage, :advertising_types  %>
+		<li>- <%= link_to t('advertising_types'), adv_advtypes_path %></li>
+	<% end %>
+	<li>- <%= link_to "Adv. Requests", adv_requests_path %></li>
+</ul>
+</footer>
+</section>

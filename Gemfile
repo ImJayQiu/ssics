@@ -8,6 +8,11 @@ gem 'rails', '4.1.0'
 # html output:  request-log-analyzer log/production.log --output html --file log.html  
 gem 'request-log-analyzer', '~> 1.13.0'
 
+#Use paperclip and jquery to attach files
+# gem "paperclip", "~> 4.1.1"
+gem 'paperclip', github: 'thoughtbot/paperclip'
+gem "jquery-fileupload-rails"
+
 # help to kill N+1 queries and unused eager loading.
 gem 'bullet', '~> 4.8.0'
 

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @adv_finaldesign.request_id %>
+</p>
+
+<p>
+  <strong>Upload by:</strong>
+  <%= @adv_finaldesign.upload_by %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @adv_finaldesign.remark %>
+</p>
+
+<%= link_to 'Edit', edit_adv_finaldesign_path(@adv_finaldesign) %> |
+<%= link_to 'Back', adv_finaldesigns_path %>

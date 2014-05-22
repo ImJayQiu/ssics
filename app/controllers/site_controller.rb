@@ -11,6 +11,9 @@ class SiteController < ApplicationController
 		@notices=General::Notice.where("date<=? AND e_date>=?", Date.today, Date.today )
 	end
 
+	def presentation
+	end
+
 	private
 
 	def action_layout

@@ -1,0 +1,9 @@
+<div class="fields">
+	<table>
+		<tr>
+			<td><%= t('adv_publish_date')  %> : <%= f.date_select :p_date %></td>  
+			<td><%= t('adv_layout')  %> : <%= f.collection_select :p_layout, Newspaper::Layout.all.sort, :code, :code, selected: "Any" %> </td>
+			<td><%= link_to_remove_fields t('del'), f %></td>
+		</tr>
+	</table>
+</div>

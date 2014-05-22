@@ -1,0 +1,2 @@
+module Adv::RequestsHelper
+end

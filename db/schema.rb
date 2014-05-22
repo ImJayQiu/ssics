@@ -11,7 +11,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509094707) do
+ActiveRecord::Schema.define(version: 20140520080157) do
+
+  create_table "adv_advsizes", force: true do |t|
+    t.string   "code"
+    t.string   "advsize"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "adv_advtypes", force: true do |t|
+    t.string   "code"
+    t.string   "advtype"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "adv_finaldesigns", force: true do |t|
+    t.integer  "request_id"
+    t.string   "upload_by"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "final_file_name"
+    t.string   "final_content_type"
+    t.integer  "final_file_size"
+    t.datetime "final_updated_at"
+  end
+
+  create_table "adv_originalsources", force: true do |t|
+    t.integer  "request_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  create_table "adv_pdates", force: true do |t|
+    t.integer  "request_id"
+    t.date     "p_date"
+    t.string   "layout"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "adv_requests", force: true do |t|
+    t.string   "code"
+    t.string   "c_name"
+    t.string   "a_size"
+    t.string   "a_type"
+    t.string   "article"
+    t.string   "submit_by"
+    t.string   "order_taker"
+    t.string   "confirm_by"
+    t.string   "status"
+    t.string   "designer"
+    t.string   "p_type"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "general_notices", force: true do |t|
     t.date     "date"
@@ -54,6 +118,12 @@ ActiveRecord::Schema.define(version: 20140509094707) do
     t.datetime "updated_at"
   end
 
+  create_table "newspaper_layouts", force: true do |t|
+    t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                             default: "", null: false
     t.string   "encrypted_password",                default: "", null: false
@@ -72,6 +142,10 @@ ActiveRecord::Schema.define(version: 20140509094707) do
     t.string   "department",             limit: 45
     t.string   "role",                   limit: 45
     t.string   "phone_no",               limit: 12
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

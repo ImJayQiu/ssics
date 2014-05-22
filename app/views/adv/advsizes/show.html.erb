@@ -1,0 +1,22 @@
+
+<h1><%= t('showing_adv_advsize') %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @adv_advsize.code %>
+</p>
+
+<p>
+  <strong>Size:</strong>
+  <%= @adv_advsize.advsize %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @adv_advsize.remark %>
+</p>
+
+<%= button_to t('edit'), edit_adv_advsize_path(@adv_advsize), method: :get %> 
+<%= button_to t('back'), adv_advsizes_path, method: :get %>

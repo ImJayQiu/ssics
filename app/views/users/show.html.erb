@@ -1,6 +1,7 @@
 
 <h1><%= t('showing_user') %></h1>
 
+<%= image_tag @user.avatar.url(:medium) %>
 <p>
 <strong><%= t('employer_id') %> : </strong>
 <%= @user.employer_id rescue nil %>

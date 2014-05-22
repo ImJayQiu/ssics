@@ -92,4 +92,6 @@ Rails.application.configure do
 		Bullet.add_footer = true
 	end
 
+	Paperclip.options[:command_path] = "/usr/bin/"
+
 end

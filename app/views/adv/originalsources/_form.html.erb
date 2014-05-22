@@ -1,0 +1,21 @@
+<%= form_for(@adv_originalsource) do |f| %>
+  <% if @adv_originalsource.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adv_originalsource.errors.count, "error") %> prohibited this adv_originalsource from being saved:</h2>
+
+      <ul>
+      <% @adv_originalsource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_id %><br>
+    <%= f.text_field :request_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

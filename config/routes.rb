@@ -2,6 +2,24 @@ Rails.application.routes.draw do
 
 	scope "/:locale" do
 
+		namespace :newspaper do
+			resources :layouts
+		end
+
+
+		namespace :adv do
+			resources :requests 
+			resources :pdates
+			resources :originalsources
+			resources :finaldesigns
+		end
+
+
+		namespace :adv do
+			resources :advsizes
+			resources :advtypes
+		end
+
 
 		namespace :general do
 			resources :notices
@@ -29,6 +47,7 @@ Rails.application.routes.draw do
 			collection do
 				get 'index'
 				get 'main'
+				get 'presentation'
 			end
 		end
 

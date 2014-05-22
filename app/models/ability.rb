@@ -1,5 +1,5 @@
 #coding: utf-8
-#
+
 class Ability
 
 	include CanCan::Ability
@@ -12,12 +12,17 @@ class Ability
 		if user.role == "admin"
 			can :manage, :all
 		end
-		
+
 		if user.role == "issue"
 			can :manage, :issue_areas
 			can :manage, :issue_customers
 			can :manage, :issue_customer_types
 		end	
+
+		if user.role =="advertising"
+			can :manage, :advertising_types  
+			can :manage, :advertising_sizes  
+		end
 
 		if user.role == "design"
 		end

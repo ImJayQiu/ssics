@@ -1,0 +1,4 @@
+<div class="fields">
+	Design : <%= f.file_field :final %>  <%= link_to_remove_fields t('del'), f %>
+<%= f.hidden_field :upload_by, value: current_user.name %>
+</div>

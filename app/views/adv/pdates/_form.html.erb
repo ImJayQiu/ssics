@@ -1,0 +1,33 @@
+<%= form_for(@adv_pdate) do |f| %>
+  <% if @adv_pdate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adv_pdate.errors.count, "error") %> prohibited this adv_pdate from being saved:</h2>
+
+      <ul>
+      <% @adv_pdate.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_id %><br>
+    <%= f.text_field :request_id %>
+  </div>
+  <div class="field">
+    <%= f.label :p_date %><br>
+    <%= f.date_select :p_date %>
+  </div>
+  <div class="field">
+    <%= f.label :layout %><br>
+    <%= f.text_field :layout %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br>
+    <%= f.text_field :remark %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

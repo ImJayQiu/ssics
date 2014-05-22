@@ -1,0 +1,29 @@
+<%= form_for(@adv_finaldesign) do |f| %>
+  <% if @adv_finaldesign.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adv_finaldesign.errors.count, "error") %> prohibited this adv_finaldesign from being saved:</h2>
+
+      <ul>
+      <% @adv_finaldesign.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :request_id %><br>
+    <%= f.text_field :request_id %>
+  </div>
+  <div class="field">
+    <%= f.label :upload_by %><br>
+    <%= f.text_field :upload_by %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br>
+    <%= f.text_field :remark %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

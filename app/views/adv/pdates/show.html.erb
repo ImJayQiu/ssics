@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Request:</strong>
+  <%= @adv_pdate.request_id %>
+</p>
+
+<p>
+  <strong>P date:</strong>
+  <%= @adv_pdate.p_date %>
+</p>
+
+<p>
+  <strong>Layout:</strong>
+  <%= @adv_pdate.layout %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @adv_pdate.remark %>
+</p>
+
+<%= link_to 'Edit', edit_adv_pdate_path(@adv_pdate) %> |
+<%= link_to 'Back', adv_pdates_path %>

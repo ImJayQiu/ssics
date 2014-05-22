@@ -1,0 +1,25 @@
+<h1>Listing adv_originalsources</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Request</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adv_originalsources.each do |adv_originalsource| %>
+      <tr>
+        <td><%= adv_originalsource.request_id %></td>
+        <td><%= link_to 'Show', adv_originalsource %></td>
+        <td><%= link_to 'Edit', edit_adv_originalsource_path(adv_originalsource) %></td>
+        <td><%= link_to 'Destroy', adv_originalsource, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Originalsource', new_adv_originalsource_path %>

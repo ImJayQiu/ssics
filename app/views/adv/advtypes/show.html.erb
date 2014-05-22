@@ -1,0 +1,19 @@
+<h1><%= t('showing_adv_advtype') %></h1>
+
+<p>
+  <strong>Code:</strong>
+  <%= @adv_advtype.code %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @adv_advtype.advtype %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @adv_advtype.remark %>
+</p>
+
+<%= button_to t('edit'), edit_adv_advtype_path(@adv_advtype), method: :get %>
+<%= button_to t('back'), adv_advtypes_path, method: :get %>
