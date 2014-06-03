@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520080157) do
+ActiveRecord::Schema.define(version: 20140603074928) do
 
   create_table "adv_advsizes", force: true do |t|
     t.string   "code"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20140520080157) do
 
   create_table "adv_finaldesigns", force: true do |t|
     t.integer  "request_id"
-    t.string   "upload_by"
+    t.string   "upload_by",          limit: 45
     t.string   "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140520080157) do
   create_table "adv_pdates", force: true do |t|
     t.integer  "request_id"
     t.date     "p_date"
-    t.string   "layout"
+    t.string   "p_layout",   limit: 10
     t.string   "remark"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -95,6 +95,14 @@ ActiveRecord::Schema.define(version: 20140520080157) do
     t.datetime "updated_at"
   end
 
+  create_table "issue_cities", force: true do |t|
+    t.string   "code"
+    t.string   "city_name"
+    t.integer  "province_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "issue_customers", force: true do |t|
     t.string   "code"
     t.string   "c_name"
@@ -108,6 +116,14 @@ ActiveRecord::Schema.define(version: 20140520080157) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remark"
+  end
+
+  create_table "issue_provinces", force: true do |t|
+    t.string   "code"
+    t.string   "province"
+    t.integer  "area_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "issue_types", force: true do |t|

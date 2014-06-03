@@ -13,7 +13,7 @@
 		<tbody>
 			<tr>
 				<td><%= issue_area.code %></td>
-				<td><%= issue_area.area %></td>
+				<td><%= t(issue_area.area) %></td>
 				<td><%= button_to t('show'), issue_area, method: :get %></td>
 				<td><%= button_to t('edit'), edit_issue_area_path(issue_area), method: :get %></td>
 				<td><%= button_to t('del'), issue_area, method: :delete, data: { confirm: t('are_you_sure') } %></td>

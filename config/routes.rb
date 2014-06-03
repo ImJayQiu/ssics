@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
+
 	scope "/:locale" do
+
 
 		namespace :newspaper do
 			resources :layouts
@@ -28,6 +30,8 @@ Rails.application.routes.draw do
 
 		namespace :issue do
 			resources :areas
+			resources :provinces
+			resources :cities
 			resources :customers
 			resources :types
 		end

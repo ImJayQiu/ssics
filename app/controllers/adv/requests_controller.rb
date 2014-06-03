@@ -5,7 +5,7 @@ class Adv::RequestsController < ApplicationController
 	# GET /adv/requests
 	# GET /adv/requests.json
 	def index
-		@adv_requests = Adv::Request.all
+		@adv_requests = Adv::Request.paginate(:page => params[:page], :per_page => 3 )	
 	end
 
 	# GET /adv/requests/1

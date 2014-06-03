@@ -1,5 +1,13 @@
 <h1><%= t('listing_adv_requests') %></h1>
 
+
+<table>
+	<tr>
+		<td><%= button_to 'New Request', new_adv_request_path, method: :get %></td>
+		<td><%= will_paginate @adv_requests %></td>
+	</tr>
+</table>
+
 <table>
   <thead>
     <tr>
@@ -26,4 +34,9 @@
 
 <br>
 
-<%= button_to 'New Request', new_adv_request_path, method: :get %>
+<table>
+	<tr>
+		<td><%= button_to 'New Request', new_adv_request_path, method: :get %></td>
+		<td><%= will_paginate @adv_requests %></td>
+	</tr>
+</table>

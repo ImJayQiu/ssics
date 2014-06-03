@@ -1,0 +1,35 @@
+
+<div class="fields">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3">Add Provinces and Cities</th>
+			</tr>
+		</thead>
+		<tr>
+			<td>Code : <%= f.text_field :code, size: 1 %></td>  
+			<td>Province : <%= f.text_field :province, size: 1 %></td>
+			<td><%= link_to_remove_fields t('del'), f %></td>
+		</tr>
+
+		<tr>
+			<table>
+				<thead>
+					<tr>
+						<th>Listing Cities</th>
+					</tr>
+				</thead>
+
+				<%= f.fields_for :cities do |city| %>
+					<tr>
+						<td><%= render "city_fields", f: city %></td>
+					</tr>
+				<% end %>
+			</table>
+			<p>>> <%= link_to_add_fields "Add City", f, :cities %></p>
+
+		</tr>
+
+	</table>
+
+</div>

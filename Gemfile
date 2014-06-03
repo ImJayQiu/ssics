@@ -3,6 +3,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
 
+# Use will_paginate to separate records 
+gem 'will_paginate', '~> 3.0.5'
+
 # Use for log analysis
 # method: request-log-analyzer log/production.log
 # html output:  request-log-analyzer log/production.log --output html --file log.html  

@@ -1,0 +1,29 @@
+<h1>Listing issue_provinces</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Province</th>
+      <th>Area</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @issue_provinces.each do |issue_province| %>
+      <tr>
+        <td><%= issue_province.code %></td>
+        <td><%= issue_province.province %></td>
+        <td><%= issue_province.area_id %></td>
+        <td><%= link_to 'Show', issue_province %></td>
+        <td><%= link_to 'Edit', edit_issue_province_path(issue_province) %></td>
+        <td><%= link_to 'Destroy', issue_province, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Province', new_issue_province_path %>

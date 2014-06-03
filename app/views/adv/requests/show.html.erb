@@ -1,8 +1,15 @@
 <h1><%= t('showing_adv_request')  %></h1>
 <p id="notice"><%= notice %></p>
 
-<table>
 
+<table>
+	<tr>
+		<td><%= button_to t('edit'), edit_adv_request_path(@adv_request), method: :get %></td>
+		<td><%= button_to t('back'), adv_requests_path, method: :get %></td>
+	</tr>
+</table>
+
+<table>
 	<thead>
 		<tr>
 			<th><%= t('adv_code') %></th>

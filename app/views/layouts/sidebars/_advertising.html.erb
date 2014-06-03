@@ -14,7 +14,7 @@
 	<% if can? :manage, :advertising_types  %>
 		<li>- <%= link_to t('advertising_types'), adv_advtypes_path %></li>
 	<% end %>
-	<li>- <%= link_to "Adv. Requests", adv_requests_path %></li>
+	<li>- <%= link_to t("adv_request"), adv_requests_path %></li>
 </ul>
 </footer>
 </section>
