@@ -1,0 +1,2 @@
+module Adv::PdatesHelper
+end

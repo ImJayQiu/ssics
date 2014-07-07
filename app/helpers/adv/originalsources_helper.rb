@@ -1,0 +1,2 @@
+module Adv::OriginalsourcesHelper
+end

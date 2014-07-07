@@ -1,0 +1,6 @@
+<h1><%= t('edit_general_notice') %></h1>
+
+<%= render 'form' %>
+
+<%= button_to t('show'), @general_notice, method: :get %> 
+<%= button_to t('back'), general_notices_path, method: :get %>

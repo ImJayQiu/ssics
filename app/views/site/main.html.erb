@@ -1,0 +1,29 @@
+<li><%= render 'devise/menu/registration_items' %></li>
+
+<p></p>
+<section>
+<header>
+<h3><%= Date.today  %> - <%= t('notice_today') %></h3>
+</header>
+<% if @notices.count<1 %>
+	<ul>
+		<li>
+		今 日 无 公 告 . |	There is nothing special today. 
+		</li>
+	</ul>
+<% else %>
+	<% @notices.each do |notice| %>
+		<table>
+			<tr>
+				<th><%= t('notice_title')%> : <%= notice.title %><br/>
+					<%= t('notice_operator')%> : <%= notice.operator %> </th>
+			</tr>
+			<tr>
+				<td><%= t('notice_content')%> : <%= simple_format(notice.notice) %></td>
+			</tr>
+		</table>
+		<% end #@notives.each  %>
+
+		<% end #if @notices.nil? %>
+
+		</section>

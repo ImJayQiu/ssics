@@ -1,0 +1,21 @@
+<%= form_for(@newspaper_layout) do |f| %>
+  <% if @newspaper_layout.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@newspaper_layout.errors.count, "error") %> prohibited this newspaper_layout from being saved:</h2>
+
+      <ul>
+      <% @newspaper_layout.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

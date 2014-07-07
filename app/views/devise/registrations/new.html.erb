@@ -1,0 +1,21 @@
+<h2>注 册 帐 号 | Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div>姓 名 | Name<br />
+  <%= f.text_field :name, autofocus: true %></div>
+
+  <div>电子邮件地址 | E-mail Address<br />
+  <%= f.email_field :email, autofocus: true %></div>
+
+  <div>输 入 密 码 | Password<br />
+    <%= f.password_field :password, autocomplete: "off" %></div>
+
+  <div>密 码 确 认 | Password confirmation<br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+
+  <div><%= f.submit "提 交 | Submit" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>

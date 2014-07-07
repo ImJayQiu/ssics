@@ -1,0 +1,2 @@
+module Issue::ProvincesHelper
+end

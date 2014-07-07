@@ -1,0 +1,43 @@
+<%= form_for(@general_notice) do |f| %>
+  <% if @general_notice.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@general_notice.errors.count, "error") %> prohibited this general_notice from being saved:</h2>
+
+      <ul>
+      <% @general_notice.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label t('notice_date') %><br>
+    <%= f.date_select :date, value: Date.today %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= f.label t('notice_title') %><br>
+    <%= f.text_field :title %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= f.label t('notice_content') %><br>
+    <%= f.text_field :notice %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= f.label t('notice_e_date') %><br>
+    <%= f.date_select :e_date %>
+  </div>
+  <p></p>
+  <div class="field">
+    <%= f.label t('notice_operator') %> : 
+    <%= current_user.name %>
+	<%= f.hidden_field :operator, value: current_user.name %>
+  </div>
+  <p></p>
+  <div class="actions">
+    <%= f.submit t('submit') %>
+  </div>
+<% end %>

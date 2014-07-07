@@ -1,0 +1,9 @@
+<% if user_signed_in? %>
+  Hi! <%= current_user.name %> | 
+  <%= link_to t('edit_personal_information'), edit_user_registration_path %>
+ 
+<% else %>
+
+  <%= link_to('Register', new_user_registration_path)  %>
+
+<% end %>

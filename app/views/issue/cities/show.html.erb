@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @issue_city.code %>
+</p>
+
+<p>
+  <strong>City name:</strong>
+  <%= @issue_city.city_name %>
+</p>
+
+<p>
+  <strong>Area:</strong>
+  <%= @issue_city.area %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @issue_city.remark %>
+</p>
+
+<%= link_to 'Edit', edit_issue_city_path(@issue_city) %> |
+<%= link_to 'Back', issue_cities_path %>

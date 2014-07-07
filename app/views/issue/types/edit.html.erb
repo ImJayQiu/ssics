@@ -1,0 +1,6 @@
+<h1><%= t('editing_issue_type') %></h1>
+
+<%= render 'form' %>
+
+<%= button_to t('show'), @issue_type, method: :get %>
+<%= button_to t('back'), issue_types_path, method: :get %>

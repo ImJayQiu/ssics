@@ -1,0 +1,135 @@
+<h1><%= t('showing_adv_request')  %></h1>
+<p id="notice"><%= notice %></p>
+
+
+<table>
+	<tr>
+		<td><%= button_to t('edit'), edit_adv_request_path(@adv_request), method: :get %></td>
+		<td><%= button_to t('back'), adv_requests_path, method: :get %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th><%= t('adv_code') %></th>
+			<th><%= t('adv_customer') %></th>
+			<th> <%= t('adv_size') %></th>
+		</tr>
+	</thead>
+
+	<tr>
+		<th><%= @adv_request.code %></th>
+		<th><%= @adv_request.c_name %></th>
+		<th><%= @adv_request.a_size %></th>
+	</tr>
+
+</table>
+
+
+<table>
+
+	<thead>
+		<tr>
+			<th><%= t('adv_type') %></th>
+			<th><%= t('adv_publish_type') %></th>
+			<th><%= t('adv_sales_person') %></th>
+			<th><%= t('adv_order_taker')%></th>
+		</tr>
+	</thead>
+
+	<tr>
+		<th><%= @adv_request.a_type %></th>
+		<th><%= @adv_request.p_type %></th>
+		<th><%= @adv_request.submit_by %></th>
+		<th><%= @adv_request.order_taker %></th>
+	</tr>
+
+</table>
+
+
+
+<table>
+
+	<thead>
+		<tr>
+			<th><%= t('adv_related_article') %></th>
+		</tr>
+	</thead>
+
+	<tr>
+		<th><%= @adv_request.article %></th>
+	</tr>
+
+</table>
+
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="3"><%= t('adv_publish_date') %></th>
+		</tr>
+		<tr>
+			<th><%= t('index') %></th>
+			<th><%= t('adv_publish_date')  %></th>
+			<th><%= t('adv_layout') %></th>
+		</tr>
+	</thead>
+	<% @adv_request.pdates.sort.each_with_index do |date,i|  %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= date.p_date %></td>
+			<td><%= date.p_layout %></td>
+		</tr>
+	<% end %>
+
+</table>
+
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="3"><%= t('adv_original_source')%></th>
+		</tr>
+	</thead>
+	<% @adv_request.originalsources.each_with_index do |source,i|  %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= t("file_name") %> : <%= source.image_file_name%></td>
+			<td><%= link_to( image_tag(source.image.url(:thumb) ), source.image.url(:original) ) %></td>
+		</tr>
+	<% end %>
+</table>
+
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="4"><%= t('adv_final_design') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<th><%= t("index")  %></th>
+		<th><%= t('adv_final_design') %></th>
+		<th><%= t("adv_final_submit_at") %></th>
+		<th><%= t("adv_final_submit_by") %></th>
+	</tr>
+
+	<% @adv_request.finaldesigns.reverse.each_with_index do |source,i|  %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td><%= link_to( image_tag(source.final.url(:thumb) ), source.final.url(:original) ) %></td>
+			<td><%= source.created_at.strftime("%Y-%m-%d") %><br><%= source.created_at.strftime("%H:%M:%S") %></td>  
+			<td><%= source.upload_by %></td>  
+		</tr>
+	<% end %>
+</table>
+
+
+
+<table>
+	<tr>
+		<td><%= button_to t('edit'), edit_adv_request_path(@adv_request), method: :get %></td>
+		<td><%= button_to t('back'), adv_requests_path, method: :get %></td>
+	</tr>
+</table>

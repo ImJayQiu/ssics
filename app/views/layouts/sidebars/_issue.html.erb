@@ -1,0 +1,25 @@
+
+<% if can? :view, :issue  %>
+<section>
+<header>
+<h4>
+	<img src="/images/icon/issue.png" alt="issue" />
+	<%= t('issue_department') %>
+</h4>
+</header>
+<footer>
+<ul>
+	<% if can? :manage, :issue_areas  %>
+		<li>- <%= link_to t('issue_areas_setting'), issue_areas_path %></li>
+	<% end %>
+	<% if can? :manage, :issue_customer_types  %>
+		<li>- <%= link_to t('issue_customer_types'), issue_types_path %></li>
+	<% end %>
+
+	<% if can? :manage, :issue_customers  %>
+		<li>- <%= link_to t('issue_customers_management'), issue_customers_path %></li>
+	<% end %>
+</ul>
+</footer>
+</section>
+<% end %>

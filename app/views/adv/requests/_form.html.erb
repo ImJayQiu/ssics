@@ -1,0 +1,165 @@
+<%= form_for(@adv_request, html: { multipart: true }) do |f| %>
+	<% if @adv_request.errors.any? %>
+		<div id="error_explanation">
+			<h4><%= pluralize(@adv_request.errors.count, "error") %> prohibited this adv_request from being saved:</h4>
+
+			<ul>
+				<% @adv_request.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+
+	<table>
+
+		<thead>
+			<tr>
+				<th><%= t('adv_code') %></th>
+				<th><%= t('adv_customer') %></th>
+				<th> <%= t('adv_size') %></th>
+			</tr>
+		</thead>
+
+		<tr>
+			<th><%= f.text_field :code %></th>
+			<th><%= f.text_field :c_name %></th>
+			<th><%= f.collection_select :a_size, Adv::Advsize.all.sort, :advsize, :advsize, prompt: "-Select-" %></th>
+		</tr>
+
+	</table>
+
+
+	<table>
+
+		<thead>
+			<tr>
+				<th><%= t('adv_type') %></th>
+				<th><%= t('adv_publish_type') %></th>
+				<th><%= t('adv_sales_person') %></th>
+				<th><%= t('adv_order_taker')%></th>
+			</tr>
+		</thead>
+
+		<tr>
+			<th><%= f.collection_select :a_type, Adv::Advtype.all.sort, :advtype, :advtype, prompt: "-Select-" %></th>
+			<th><%= f.text_field :p_type %></th>
+			<th><%= f.text_field :submit_by %></th>
+			<th><%= current_user.name %></th>
+			<%= f.hidden_field :order_taker, value: current_user.name %>
+		</tr>
+
+	</table>
+
+
+
+	<table>
+
+		<thead>
+			<tr>
+				<th><%= t('adv_related_article') %></th>
+			</tr>
+		</thead>
+
+		<tr>
+			<th><%= f.text_area :article, size: "10x5" %></th>
+		</tr>
+
+	</table>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('adv_publish_date') %></th>
+			</tr>
+		</thead>
+
+		<%= f.fields_for :pdates do |pdate| %>
+			<tr>
+				<td><%= render "pdate_fields", f: pdate %></td>
+			</tr>
+		<% end %>
+	</table>
+	<p>>> <%= link_to_add_fields t("add_adv_publish_date"), f, :pdates %></p>
+
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('adv_original_source')%></th>
+			</tr>
+		</thead>
+		<%= f.fields_for :originalsources do |sources| %>
+			<% if !f.object.new_record? %>
+				<tr>
+					<td>
+						<%= t("file_name") %> : <%= sources.object.image_file_name %> | 
+						<%= link_to image_tag(sources.object.image.url(:thumb)), 
+						sources.object.image.url(:original) %> | 
+						<%= sources.label :_destroy, t("del") %>?
+						<%= sources.check_box :_destroy %>
+					</td>
+				</tr>
+			<% else %>
+				<tr>
+					<td><%= render "originalsource_fields", f: sources %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+	<p>>> <%= link_to_add_fields t("add_adv_source"), f, :originalsources %></p>
+
+
+	<%#= f.label :confirm_by %>
+	<%#= f.text_field :confirm_by %>
+	<%#= f.label :status %>
+	<%#= f.text_field :status %>
+
+
+	<%#= f.label :designer %>
+	<%#= f.text_field :designer %>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('adv_final_design') %></th>
+			</tr>
+		</thead>
+		<%= f.fields_for :finaldesigns do |final| %>
+			<% if !f.object.new_record? %>
+				<tr>
+					<td>
+						<%= t("file_name") %> : <%= final.object.final_file_name %> | 
+						<%= link_to image_tag(final.object.final.url(:thumb)), 
+						final.object.final.url(:original) %> | 
+						<%= t("upload_by") %> : <%= final.object.upload_by %> | 
+						<%= final.label :_destroy, t("del") %>?
+						<%= final.check_box :_destroy %>
+					</td>
+				</tr>
+			<% else %>
+				<tr>
+					<td><%= render "finaldesign_fields", f: final %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+	<p>>> <%= link_to_add_fields t("add_adv_final_design"), f, :finaldesigns %></p>
+
+
+	<table>
+		<tr>
+			<td>
+				<%= f.submit t('submit') %>
+			<% end %>
+		</td>
+		<td>
+			<%= button_to t('show'), @adv_request, method: :get %>
+		</td>
+		<td>
+			<%= button_to t('back'), adv_requests_path, method: :get %>
+		</td>
+	</tr>
+</table>

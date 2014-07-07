@@ -1,0 +1,35 @@
+
+<div class="fields">
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3">Information of Province</th>
+			</tr>
+
+			<tr>
+				<th>Code</th>
+				<th>Province Name</th>
+				<th>Operation</th>
+			</tr>
+		</thead>
+
+		<tr>
+			<td><%= f.text_field :code %></td>  
+			<td><%= f.text_field :province %></td>
+			<td><%= link_to_remove_fields t('del'), f %></td>
+		</tr>
+
+	</table>
+
+</div>
+
+<table>
+	<tr>
+		<th colspan="3">Listing Cities</th>
+	</tr>
+	<%= f.fields_for :cities do |city| %>
+		<%= render "city_fields", f: city %>
+	<% end %>
+</table>
+<p><%= link_to_add_fields ">> Add City <<", f, :cities %></p>
+

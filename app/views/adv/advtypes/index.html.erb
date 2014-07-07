@@ -1,0 +1,27 @@
+<h1><%= t('listing_adv_advtypes') %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @adv_advtypes.each do |adv_advtype| %>
+      <tr>
+        <td><%= adv_advtype.code %></td>
+        <td><%= adv_advtype.advtype %></td>
+        <td><%= button_to t('show'), adv_advtype, method: :get %></td>
+        <td><%= button_to t('edit'), edit_adv_advtype_path(adv_advtype), method: :get %></td>
+        <td><%= button_to t('del'), adv_advtype, method: :delete, data: { confirm: t('are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= button_to t('new'), new_adv_advtype_path, method: :get %>

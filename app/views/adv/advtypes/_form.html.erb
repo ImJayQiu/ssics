@@ -1,0 +1,29 @@
+<%= form_for(@adv_advtype) do |f| %>
+  <% if @adv_advtype.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adv_advtype.errors.count, "error") %> prohibited this adv_advtype from being saved:</h2>
+
+      <ul>
+      <% @adv_advtype.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :advtype %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br>
+    <%= f.text_field :remark %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+<% end %>

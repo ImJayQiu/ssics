@@ -1,0 +1,91 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>星暹日报-内部管理系统</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="/css/ie/html5shiv.js"></script><![endif]-->
+		<script src="/js/jquery.js"></script>
+		<script src="/js/jquery.min.js"></script>
+		<script src="/js/jquery_ujs.js"></script>
+		<script src="/js/rails.js"></script>
+		<script src="/js/jquery.dropotron.min.js"></script>
+		<script src="/js/skel.min.js"></script>
+		<script src="/js/skel-layers.min.js"></script>
+		<script src="/js/init.js"></script>
+		<%= csrf_meta_tags %>
+		<noscript>
+			<link rel="stylesheet" href="/css/skel.css" />
+			<link rel="stylesheet" href="/css/style.css" />
+			<link rel="stylesheet" href="/css/style-noscript.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="/css/ie/v8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="/css/ie/v9.css" /><![endif]-->
+	</head>
+	<body class="index loading">
+
+		<!-- Header -->
+		<header id="header" class="alt">
+		<h1 id="logo"><a href="/">星暹日报 <span>内部管理系统</span></a></h1>
+		<nav id="nav">
+		<ul>
+			<li class="current"><a href="/">Welcome</a></li>
+
+			<li class="submenu">
+			<a href=""><%= t :related_info %></a>
+			<ul>
+				<li><a href="#.html"><%= t :organization_structure %></a></li>
+				<li><a href="#.html"><%= t :contact_list %></a></li>
+				<li><%= link_to "Presentation", controller: "site", action: :presentation %></li>
+			</ul>
+			</li>
+
+			<li class="submenu">
+			<a href="">语言选择 | Languages </a>
+			<ul>
+				<li><%= link_to "English", :locale=>'en' %></li>
+				<li><%= link_to "ภาษาไทย", :locale=>'th' %></li>
+				<li><%= link_to "简体中文", :locale=>'cn' %></li>
+			</ul>
+			</li>
+
+			<li><%= render 'devise/menu/login_items'%></li>
+
+		</ul>
+		</nav>
+		</header>
+
+		<!-- Banner -->		
+		<section id="banner">
+
+		<!--
+		".inner" is set up as an inline-block so it automatically expands
+		in both directions to fit whatever's inside it. This means it won't
+		automatically wrap lines, so be sure to use line breaks where
+		appropriate (<br />).
+		-->
+
+		<div class="inner">
+
+
+			<% if notice %>
+				<p class="alert alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+				<p class="alert alert-danger"><%= alert %></p>
+			<% end %>
+
+			<%= yield %>
+
+		</div>
+		</section>
+
+		<!-- Footer -->
+		<footer id="footer">
+		<span class="copyright">&copy; 2014 星暹日报. All rights reserved.</span>
+		</footer>
+
+	</body>
+</html>

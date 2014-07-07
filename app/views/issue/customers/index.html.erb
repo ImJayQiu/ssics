@@ -1,0 +1,46 @@
+<h1><%= t('listing_issue_customers') %></h1>
+
+<table>
+	<tr>
+		<td><%= button_to t('new_customer'), new_issue_customer_path, method: :get %></td>
+		<td><%= will_paginate @issue_customers %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_code') %></th>
+			<th><%= t('issue_customer_name') %></th>
+			<th colspan="3"></th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @issue_customers.each do |issue_customer| %>
+			<tr>
+				<td>
+					<%= Issue::Type.where(c_type: issue_customer.c_type).first.code rescue nil %>
+					<%= Issue::Area.where(area: issue_customer.area).first.code rescue nil %>
+					<%= Issue::Province.where(province: issue_customer.province).first.code rescue nil %>
+					<%= Issue::City.where(city: issue_customer.city).first.code rescue nil %>
+					<%= issue_customer.id %>
+				</td>
+				<td><%= issue_customer.c_name %></td>
+				<td><%= button_to t('show'), issue_customer, method: :get %></td>
+				<td><%= button_to t('edit'), edit_issue_customer_path(issue_customer) , method: :get %></td>
+				<td><%= button_to t('del'), issue_customer, method: :delete, data: { confirm: t('are_you_sure') } %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<table>
+	<tr>
+		<td><%= button_to t('new_customer'), new_issue_customer_path, method: :get %></td>
+		<td><%= will_paginate @issue_customers %></td>
+	</tr>
+</table>
+
+
+

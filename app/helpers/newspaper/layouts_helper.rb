@@ -1,0 +1,2 @@
+module Newspaper::LayoutsHelper
+end

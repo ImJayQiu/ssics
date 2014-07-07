@@ -1,0 +1,35 @@
+<%= form_for(@issue_city) do |f| %>
+	<% if @issue_city.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@issue_city.errors.count, "error") %> prohibited this issue_city from being saved:
+			</h2>
+
+			<ul>
+				<% @issue_city.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :code %><br>
+		<%= f.text_field :code %>
+	</div>
+	<div class="field">
+		<%= f.label :city_name %><br>
+		<%= f.text_field :city_name %>
+	</div>
+	<div class="field">
+		<%= f.label :area %><br>
+		<%= f.collection_select :area, Issue::Area.all.sort, :area, :area, prompt: "-Please Select-" %>
+	</div>
+	<div class="field">
+		<%= f.label :remark %><br>
+		<%= f.text_field :remark %>
+	</div>
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

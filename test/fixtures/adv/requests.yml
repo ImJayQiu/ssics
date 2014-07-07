@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  c_name: MyString
+  a_size: MyString
+  a_type: MyString
+  article: MyString
+  submit_by: MyString
+  order_taker: MyString
+  confirm_by: MyString
+  status: MyString
+  designer: MyString
+  p_type: MyString
+  remark: MyString
+
+two:
+  code: MyString
+  c_name: MyString
+  a_size: MyString
+  a_type: MyString
+  article: MyString
+  submit_by: MyString
+  order_taker: MyString
+  confirm_by: MyString
+  status: MyString
+  designer: MyString
+  p_type: MyString
+  remark: MyString
