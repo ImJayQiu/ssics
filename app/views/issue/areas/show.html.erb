@@ -1,21 +1,65 @@
 
 <h1><%= t('show_issue_area') %></h1>
 
-<p>
-<strong><%= t('area_code') %> : </strong>
-  <%= @issue_area.code %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('area_code') %> : </th>
+			<th><%= t('area_name') %> : </th>
+		</tr>
+	</thead>
 
-<p>
-<strong><%= t('area_name') %> : </strong>
-  <%= t(@issue_area.area) %>
-</p>
+	<tr>
+		<td><%= @issue_area.code %></td>
+		<td><%= t(@issue_area.area) %></td>
+	</tr>
+</table>
 
-<p>
-<strong><%= t('remark') %> : </strong>
-  <%= @issue_area.remark %>
-</p>
+<% @issue_area.provinces.each do |p|  %>
+	<table>
+		<tr>
+			<th>Province Code</th>
+			<th>Province Name</th>
+		</tr>
+		<tr>
+			<td><%= p.code %></td>
+			<td><%= p.province %></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<table>
+					<tr>
+						<td>Index</td>
+						<td>City Code</td>
+						<td>City Name</td>
+					</tr>
+					<% p.cities.each_with_index do |c,i|  %>
+						<tr>
+							<td><%= i+1 %></td>
+							<td><%= c.code %></td>
+							<td><%= c.city %></td>
+						</tr>
+					<% end %>
+				</table>
+			</td>
+		</tr>
+	</table>
+<% end %>
 
+<table>
+	<tr>
+		<td><%= t('remark') %> : </td>
+	</tr>
+	<tr>
+		<td>
+			<%= @issue_area.remark %>
+		</td>
+	</tr>
+</table>
 
-<%= button_to t('edit'), edit_issue_area_path(@issue_area), method: :get %> 
-<%= button_to t('back'), issue_areas_path, method: :get %>
+<table>
+	<tr>
+		<td><%= button_to t('edit'), edit_issue_area_path(@issue_area), method: :get %></td>
+		<td><%= button_to t('back'), issue_areas_path, method: :get %></td>
+	</tr>
+</table>

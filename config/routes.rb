@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
 	scope "/:locale" do
 
+		namespace :purchase do
+			resources :requests
+		end
+
+
 
 		namespace :newspaper do
 			resources :layouts
@@ -32,10 +37,9 @@ Rails.application.routes.draw do
 			resources :areas
 			resources :provinces
 			resources :cities
-			resources :customers
+			resources :customers 
 			resources :types
 		end
-
 
 		devise_for :users do
 			get '/users/sign_out' => 'devise/sessions#destroy'
@@ -52,6 +56,8 @@ Rails.application.routes.draw do
 				get 'index'
 				get 'main'
 				get 'presentation'
+				get 'weixin'
+				get 'weixin_mobile'
 			end
 		end
 

@@ -1,0 +1,1 @@
+json.extract! @purchase_request, :id, :code, :p_name, :quantity, :unit, :request_date, :estimate_price, :submit_by, :p_confirm, :p_plan, :p_location, :p_net_price, :p_vat, :p_total_price, :w_location, :operator, :created_at, :updated_at

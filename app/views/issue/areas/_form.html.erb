@@ -1,70 +1,74 @@
-<%= form_for(@issue_area, html: { multipart: true }) do |f| %>
-	<% if @issue_area.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@issue_area.errors.count, "error") %> prohibited this issue_area from being saved:
-			</h2>
+<div>
+	<%= form_for(@issue_area, html: { multipart: true }) do |f| %>
+		<% if @issue_area.errors.any? %>
+			<div id="error_explanation">
+				<h2>
+					<%= pluralize(@issue_area.errors.count, "error") %> prohibited this issue_area from being saved:
+				</h2>
 
-			<ul>
-				<% @issue_area.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+				<ul>
+					<% @issue_area.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
 
-	<table>
-
-		<thead>
+		<table>
 			<tr>
-				<th><%= t('area_code') %></th>
-				<th><%= f.label t('area_name') %></th>
+				<th><%= f.submit t('submit') %></th>
+				<th><%= button_to t('show'), @issue_area, method: :get %> </th>
+				<th><%= button_to t('back'), issue_areas_path, method: :get %></th>
 			</tr>
-		</thead>
+		</table>
 
-		<tr>
-			<th><%= f.text_field :code %></th>
-			<th><%= f.text_field :area %></th>
-		</tr>
+		<table>
 
-	</table>
+			<thead>
+				<tr>
+					<th><%= t('area_code') %></th>
+					<th><%= t('area_name') %></th>
+				</tr>
+			</thead>
+
+			<tr>
+				<th><%= f.text_field :code %></th>
+				<th><%= f.text_field :area %></th>
+			</tr>
+
+		</table>
 
 
-
-
-	<table>
 		<%= f.fields_for :provinces do |province| %>
-			<tr>
-				<td><%= render "province_fields", f: province %></td>
-			</tr>
+			<%= render "province_fields", f: province %>
 		<% end %>
-	</table>
-	<p>>> <%= link_to_add_fields "Add Province", f, :provinces %></p>
+		<p><%= link_to_add_fields ">> Add Province", f, :provinces %></p>
 
 
 
 
-	<table>
+		<table>
 
-		<thead>
+			<thead>
+				<tr>
+					<th><%= t('remark') %></th>
+				</tr>
+			</thead>
+
 			<tr>
-				<th><%= t('remark') %></th>
+				<th><%= f.text_area :remark, size: "10x5" %></th>
 			</tr>
-		</thead>
 
-		<tr>
-			<th><%= f.text_area :remark, size: "10x5" %></th>
+		</table>
+
+
+
+		<table>
+			<tr>
+				<th><%= f.submit t('submit') %></th>
+			<% end %>
+			<th><%= button_to t('show'), @issue_area, method: :get %> </th>
+			<th><%= button_to t('back'), issue_areas_path, method: :get %></th>
 		</tr>
-
 	</table>
-
-
-
-	<table>
-		<tr>
-			<th><%= f.submit t('submit') %></th>
-		<% end %>
-		<th><%= button_to t('show'), @issue_area, method: :get %> </th>
-		<th><%= button_to t('back'), issue_areas_path, method: :get %></th>
-	</tr>
-</table>
+</div>

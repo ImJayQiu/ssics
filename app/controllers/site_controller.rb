@@ -1,6 +1,6 @@
 class SiteController < ApplicationController
 
-	skip_before_filter :authenticate_user!, only: :index
+	skip_before_filter :authenticate_user!, only: [:index, :weixin, :weixin_mobile]
 	layout :action_layout 
 
 	def index
@@ -14,6 +14,12 @@ class SiteController < ApplicationController
 	def presentation
 	end
 
+	def weixin
+	end
+
+	def weixin_mobile
+	end
+
 	private
 
 	def action_layout
@@ -22,6 +28,12 @@ class SiteController < ApplicationController
 
 		when "index"
 			"index"
+		when "weixin" 
+			"index_no_menu"
+		when "weixin_mobile" 
+			"index_no_menu"
+		else
+			"application"
 		end
 
 	end

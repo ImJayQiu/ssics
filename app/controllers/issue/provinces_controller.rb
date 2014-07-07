@@ -64,7 +64,7 @@ class Issue::ProvincesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_issue_province
-      @issue_province = Issue::Province.find(params[:id])
+      @issue_province = Issue::Province.find(params[:id])  
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

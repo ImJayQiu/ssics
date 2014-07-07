@@ -38,7 +38,7 @@
 	<p></p>
 	<div class="field">
 		<%= f.label t('user_role') %><br>
-		<%= f.text_field :role %>
+		<%= f.collection_select :role, General::ROLES, :to_s, :humanize %>
 	</div>
 	<p></p>
 	<div class="field">

@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @purchase_request.code %>
+</p>
+
+<p>
+  <strong>P name:</strong>
+  <%= @purchase_request.p_name %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @purchase_request.quantity %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @purchase_request.unit %>
+</p>
+
+<p>
+  <strong>Request date:</strong>
+  <%= @purchase_request.request_date %>
+</p>
+
+<p>
+  <strong>Estimate price:</strong>
+  <%= @purchase_request.estimate_price %>
+</p>
+
+<p>
+  <strong>Submit by:</strong>
+  <%= @purchase_request.submit_by %>
+</p>
+
+<p>
+  <strong>P confirm:</strong>
+  <%= @purchase_request.p_confirm %>
+</p>
+
+<p>
+  <strong>P plan:</strong>
+  <%= @purchase_request.p_plan %>
+</p>
+
+<p>
+  <strong>P location:</strong>
+  <%= @purchase_request.p_location %>
+</p>
+
+<p>
+  <strong>P net price:</strong>
+  <%= @purchase_request.p_net_price %>
+</p>
+
+<p>
+  <strong>P vat:</strong>
+  <%= @purchase_request.p_vat %>
+</p>
+
+<p>
+  <strong>P total price:</strong>
+  <%= @purchase_request.p_total_price %>
+</p>
+
+<p>
+  <strong>W location:</strong>
+  <%= @purchase_request.w_location %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @purchase_request.operator %>
+</p>
+
+<%= link_to 'Edit', edit_purchase_request_path(@purchase_request) %> |
+<%= link_to 'Back', purchase_requests_path %>

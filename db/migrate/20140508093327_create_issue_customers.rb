@@ -5,6 +5,8 @@ class CreateIssueCustomers < ActiveRecord::Migration
       t.string :c_name
       t.string :c_address
       t.string :area
+      t.string :province
+      t.string :city
       t.string :c_type
       t.string :p_name
       t.string :email

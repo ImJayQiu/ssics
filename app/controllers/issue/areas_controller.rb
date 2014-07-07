@@ -61,18 +61,21 @@ class Issue::AreasController < ApplicationController
 		end
 	end
 
+
+
 	private
 	# Use callbacks to share common setup or constraints between actions.
 	def set_issue_area
-		@issue_area = Issue::Area.find(params[:id])
+		@issue_area = Issue::Area.includes(provinces: :cities).find(params[:id])
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def issue_area_params
 		params.require(:issue_area).permit(
 			:code, :area, :remark,
-			provinces_attributes: [:id, :area_id, :code, :_destroy], 
-			cities_attributes: [:id, :province_id, :code, :_destroy] 
+			provinces_attributes: [:id, :area_id, :code, :province, :_destroy, 
+						  cities_attributes: [:id, :province_id, :code, :city, :_destroy]
+		]	
 		)
 
 	end

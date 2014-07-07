@@ -1,0 +1,77 @@
+<%= form_for(@purchase_request) do |f| %>
+  <% if @purchase_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@purchase_request.errors.count, "error") %> prohibited this purchase_request from being saved:</h2>
+
+      <ul>
+      <% @purchase_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :p_name %><br>
+    <%= f.text_field :p_name %>
+  </div>
+  <div class="field">
+    <%= f.label :quantity %><br>
+    <%= f.number_field :quantity %>
+  </div>
+  <div class="field">
+    <%= f.label :unit %><br>
+    <%= f.text_field :unit %>
+  </div>
+  <div class="field">
+    <%= f.label :request_date %><br>
+    <%= f.date_select :request_date %>
+  </div>
+  <div class="field">
+    <%= f.label :estimate_price %><br>
+    <%= f.number_field :estimate_price %>
+  </div>
+  <div class="field">
+    <%= f.label :submit_by %><br>
+    <%= f.text_field :submit_by %>
+  </div>
+  <div class="field">
+    <%= f.label :p_confirm %><br>
+    <%= f.text_field :p_confirm %>
+  </div>
+  <div class="field">
+    <%= f.label :p_plan %><br>
+    <%= f.date_select :p_plan %>
+  </div>
+  <div class="field">
+    <%= f.label :p_location %><br>
+    <%= f.text_field :p_location %>
+  </div>
+  <div class="field">
+    <%= f.label :p_net_price %><br>
+    <%= f.number_field :p_net_price %>
+  </div>
+  <div class="field">
+    <%= f.label :p_vat %><br>
+    <%= f.number_field :p_vat %>
+  </div>
+  <div class="field">
+    <%= f.label :p_total_price %><br>
+    <%= f.number_field :p_total_price %>
+  </div>
+  <div class="field">
+    <%= f.label :w_location %><br>
+    <%= f.text_field :w_location %>
+  </div>
+  <div class="field">
+    <%= f.label :operator %><br>
+    <%= f.text_field :operator %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

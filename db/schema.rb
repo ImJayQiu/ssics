@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603074928) do
+ActiveRecord::Schema.define(version: 20140613104945) do
 
   create_table "adv_advsizes", force: true do |t|
     t.string   "code"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20140603074928) do
 
   create_table "issue_cities", force: true do |t|
     t.string   "code"
-    t.string   "city_name"
+    t.string   "city"
     t.integer  "province_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 20140603074928) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remark"
+    t.string   "province",   limit: 45
+    t.string   "city",       limit: 45
   end
 
   create_table "issue_provinces", force: true do |t|
@@ -136,6 +138,29 @@ ActiveRecord::Schema.define(version: 20140603074928) do
 
   create_table "newspaper_layouts", force: true do |t|
     t.string   "code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "purchase_requests", force: true do |t|
+    t.string   "code"
+    t.string   "p_name"
+    t.integer  "quantity"
+    t.string   "unit"
+    t.date     "request_date"
+    t.integer  "estimate_price"
+    t.string   "submit_by"
+    t.string   "submit_remark"
+    t.string   "p_confirm"
+    t.string   "confirm_remark"
+    t.date     "p_plan"
+    t.string   "p_location"
+    t.integer  "p_net_price"
+    t.integer  "p_vat"
+    t.integer  "p_total_price"
+    t.string   "w_location"
+    t.string   "operator"
+    t.string   "purchase_remark"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

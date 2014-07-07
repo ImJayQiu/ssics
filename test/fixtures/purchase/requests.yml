@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  p_name: MyString
+  quantity: 1
+  unit: MyString
+  request_date: 2014-06-13
+  estimate_price: 1
+  submit_by: MyString
+  p_confirm: MyString
+  p_plan: 2014-06-13
+  p_location: MyString
+  p_net_price: 1
+  p_vat: 1
+  p_total_price: 1
+  w_location: MyString
+  operator: MyString
+
+two:
+  code: MyString
+  p_name: MyString
+  quantity: 1
+  unit: MyString
+  request_date: 2014-06-13
+  estimate_price: 1
+  submit_by: MyString
+  p_confirm: MyString
+  p_plan: 2014-06-13
+  p_location: MyString
+  p_net_price: 1
+  p_vat: 1
+  p_total_price: 1
+  w_location: MyString
+  operator: MyString

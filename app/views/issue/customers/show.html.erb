@@ -1,55 +1,99 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= t('showing_issue_customer') %></h1>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_code') %></th>
+			<th><%= t('issue_customer_name') %></th>
+			<th><%= t('issue_customer_type') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td>
+			<%= Issue::Type.where(c_type: @issue_customer.c_type).first.code rescue nil %>
+			<%= Issue::Area.where(area: @issue_customer.area).first.code rescue nil %>
+			<%= Issue::Province.where(province: @issue_customer.province).first.code rescue nil %>
+			<%= Issue::City.where(city: @issue_customer.city).first.code rescue nil %>
+			<%= "%03d" % @issue_customer.id %>
+		</td>
+		<td><%= @issue_customer.c_name rescue nil %></td>
+		<td><%= @issue_customer.c_type rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%= t('issue_customer_code') %> : 
-<%= @issue_customer.code %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_address') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @issue_customer.c_address rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%= t('issue_customer_name') %> : 
-<%= @issue_customer.c_name %>
-</p>
 
-<p>
-<%= t('issue_customer_address') %> : 
-<%= @issue_customer.c_address %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_area') %></th>
+			<th><%= t('issue_customer_province') %></th>
+			<th><%= t('issue_customer_city') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @issue_customer.area rescue nil %></td>
+		<td><%= @issue_customer.province rescue nil %></td>
+		<td><%= @issue_customer.city rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%= t('issue_customer_area') %> : 
-<%= @issue_customer.area %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_contact_name') %></th>
+			<th><%= t('issue_customer_email') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @issue_customer.p_name rescue nil %></td>
+		<td><%= @issue_customer.email rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%= t('issue_customer_type') %> : 
-<%= @issue_customer.c_type %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_phone') %></th>
+			<th><%= t('issue_customer_fax') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @issue_customer.phone rescue nil %></td>
+		<td><%= @issue_customer.fax rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%= t('issue_customer_contact_name') %> : 
-<%= @issue_customer.p_name %>
-</p>
 
-<p>
-<%= t('issue_customer_email') %> : 
-<%= @issue_customer.email %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('remark') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= simple_format(@issue_customer.remark) rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-<%=  t('issue_customer_phone') %> : 
-<%= @issue_customer.phone %>
-</p>
-
-<p>
-<%= t('issue_customer_fax') %> : 
-<%= @issue_customer.fax %>
-</p>
-<p>
-<%= t('remark') %><br>
-<%= simple_format(@issue_customer.remark) %>
-</p>
-
-<%= button_to t('edit'), edit_issue_customer_path(@issue_customer), method: :get %> 
-<%= button_to t('back'), issue_customers_path, method: :get %>
+<table>
+	<tr>
+		<td>
+			<%= button_to t('edit'), edit_issue_customer_path(@issue_customer), method: :get %> 
+		</td>
+		<td>
+			<%= button_to t('back'), issue_customers_path, method: :get %>
+		</td>
+	</tr>
+</table>

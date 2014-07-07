@@ -111,3 +111,5 @@ th:
   East: "East"
   South: "South"
   NorthEast: "NorthEast"
+  issue_customer_province: "省|府"
+  issue_customer_city: "城市"
