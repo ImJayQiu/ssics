@@ -1,0 +1,21 @@
+<%= form_for(@issue_cpublish) do |f| %>
+  <% if @issue_cpublish.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@issue_cpublish.errors.count, "error") %> prohibited this issue_cpublish from being saved:</h2>
+
+      <ul>
+      <% @issue_cpublish.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :issue_publish_id %><br>
+    <%= f.text_field :issue_publish_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

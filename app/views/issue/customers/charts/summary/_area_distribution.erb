@@ -1,0 +1,23 @@
+
+<%= pie_chart  @issue_customers.group(:area).count, 
+	library: {
+	title: {
+		text: 'Customers Distribution by Area'
+	},
+	subtitle: {
+		text: 'Total Quantity : ' + @total_count.to_s
+	},
+	plotOptions: {
+		pie: {
+			size:'100%',
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true,
+				format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+			}
+		}
+	}
+
+}
+%>

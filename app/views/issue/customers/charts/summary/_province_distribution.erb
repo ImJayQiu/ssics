@@ -1,0 +1,20 @@
+<% data = @issue_customers.group(:province) %>
+<% height = (data.to_a.size).to_i * 20 + 120 %>
+
+<%= bar_chart data.count, 
+	library: {
+	chart:{
+		height: height
+	},
+	plotOptions: {
+		bar: {
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true
+				#	format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+			}
+		}
+	}
+}
+%>

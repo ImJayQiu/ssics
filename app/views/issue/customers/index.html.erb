@@ -7,6 +7,25 @@
 	</tr>
 </table>
 
+<%= form_tag({:controller=>"issue/customers", :action=>"summary" }, :method => "get") do %>  
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('issue_customer_type') %></th>
+				<th><%= t('issue_customer_province') %></th>
+				<th>Operation</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><%= collection_select :c_type, params[:c_type], Issue::Type.all.sort, :c_type, :code, prompt: "- Select -" %></td>
+			<td>
+				<%= grouped_collection_select :province, params[:province], Issue::Area.includes(:provinces).order(:area), :provinces, :area, :province, :province, prompt: "- Province -"  %>
+			</td>
+			<td><%= submit_tag "Submit | 提 交", :class => "submit" %></td>
+		</tr>
+	</table>
+<% end %>
+
 <table>
 	<thead>
 		<tr>
@@ -24,7 +43,7 @@
 					<%= Issue::Area.where(area: issue_customer.area).first.code rescue nil %>
 					<%= Issue::Province.where(province: issue_customer.province).first.code rescue nil %>
 					<%= Issue::City.where(city: issue_customer.city).first.code rescue nil %>
-					<%= issue_customer.id %>
+					<%= "%03d" % issue_customer.id %>
 				</td>
 				<td><%= issue_customer.c_name %></td>
 				<td><%= button_to t('show'), issue_customer, method: :get %></td>

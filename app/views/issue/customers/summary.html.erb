@@ -1,0 +1,62 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1><%= t('summary_issue_customer') %></h1>
+
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_area_distribution') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= render "issue/customers/charts/summary/area_distribution" %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_province_distribution') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= render "issue/customers/charts/summary/province_distribution" %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="4"><%= t('issue_customer_summary_list') %></th>
+		</tr>
+		<tr>
+			<th><%= t('index') %></th>
+			<th><%= t('issue_customer_code') %></th>
+			<th><%= t('issue_customer_name') %></th>
+			<th><%= t('operation') %></th>
+		</tr>
+	</thead>
+	<% @issue_customers.each_with_index do |c,i| %>
+		<tr>
+			<td><%= i+1 %></td>
+			<td>
+				<%= Issue::Type.where(c_type: c.c_type).first.code rescue nil %>
+				<%= Issue::Area.where(area: c.area).first.code rescue nil %>
+				<%= Issue::Province.where(province: c.province).first.code rescue nil %>
+				<%= Issue::City.where(city: c.city).first.code rescue nil %>
+				<%= "%03d" % c.id %>
+			</td>
+			<td><%= c.c_name  rescue nil %></td>
+			<td><%= button_to t('show'), c, method: :get %></td>
+		</tr>
+	<% end %>
+</table>
+
+<table>
+	<tr>
+		<td>
+			<%= button_to t('back'), issue_customers_path, method: :get %>
+		</td>
+	</tr>
+</table>

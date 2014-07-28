@@ -61,22 +61,32 @@ class Issue::CustomersController < ApplicationController
 		end
 	end
 
+	def summary
 
+		@c_type = params[:c_type]
+		@province = params[:province]
 
-	# ////////////////// useless ajax dynamic select /////////////////////////////////// 
-	def update_provinces
-	# useless	updates provinces and cities based on area selected
-		area = Issue::Area.includes(provinces: :cities).find(params[:area_id])
-		# map to name and id for use in our options_for_select
-		@provinces = area.provinces.map{|p| [p.province, p.province]}.insert(0, "Select a province")
-		@cities = area.cities.map{|c| [c.city, c.city]}.insert(0, "Select a city")
+		if @c_type == [""]
+			if @province == [""] 
+				@issue_customers = Issue::Customer.all
+			else
+				@issue_customers = Issue::Customer.where("province=?", @province)
+			end
+		else
+			if @province==[""]
+				@issue_customers = Issue::Customer.where("c_type=?", @c_type)
+			else
+				@issue_customers = Issue::Customer.where("c_type=? && province=?", @c_type, @province)
+			end
+		end
+		@total_count = @issue_customers.count
 	end
 
-	def update_cities
-		# useless updates citiess based on province selected
-		province = Issue::province.includes(:cities).find(params[:province_id])
-		@cities = province.cities.map{|s| [s.city, s.id]}.insert(0, "Select a city")
-	end
+	#	def update_cities
+	# useless updates citiess based on province selected
+	#		province = Issue::province.includes(:cities).find(params[:province_id])
+	#		@cities = province.cities.map{|s| [s.city, s.id]}.insert(0, "Select a city")
+	#	end
 	# ///////// useless ajax dynamic select /////////////////////////////////////////////// 
 
 
@@ -90,6 +100,6 @@ class Issue::CustomersController < ApplicationController
 	def issue_customer_params
 		params.require(:issue_customer).permit(
 			:code, :c_name, :c_address, :area, :province, :city, 
-			:c_type, :p_name, :email, :phone, :fax)
+			:c_type, :p_name, :email, :phone, :fax, :map)
 	end
 end

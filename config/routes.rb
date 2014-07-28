@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+
+
 	scope "/:locale" do
 
 		namespace :purchase do
@@ -19,10 +21,6 @@ Rails.application.routes.draw do
 			resources :pdates
 			resources :originalsources
 			resources :finaldesigns
-		end
-
-
-		namespace :adv do
 			resources :advsizes
 			resources :advtypes
 		end
@@ -36,8 +34,14 @@ Rails.application.routes.draw do
 		namespace :issue do
 			resources :areas
 			resources :provinces
+			resources :cpublishes
+			resources :publishes
 			resources :cities
-			resources :customers 
+			resources :customers do
+				collection do
+					get :summary
+				end
+			end
 			resources :types
 		end
 

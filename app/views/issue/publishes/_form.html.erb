@@ -1,0 +1,28 @@
+<%= form_for(@issue_publish) do |f| %>
+	<% if @issue_publish.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= pluralize(@issue_publish.errors.count, "error") %> prohibited this issue_publish from being saved:</h2>
+
+			<ul>
+				<% @issue_publish.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('publish_date') %></th>
+			</tr>
+			<tr>
+				<th><%= f.date_select :date %></th>
+			</tr>
+		</thead>
+	</table>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>

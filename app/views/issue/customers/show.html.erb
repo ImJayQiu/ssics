@@ -40,12 +40,14 @@
 			<th><%= t('issue_customer_area') %></th>
 			<th><%= t('issue_customer_province') %></th>
 			<th><%= t('issue_customer_city') %></th>
+			<th><%= t('issue_customer_map') %></th>
 		</tr>
 	</thead>
 	<tr>
 		<td><%= @issue_customer.area rescue nil %></td>
 		<td><%= @issue_customer.province rescue nil %></td>
 		<td><%= @issue_customer.city rescue nil %></td>
+		<td><%= link_to( image_tag(@issue_customer.map.url(:thumb) ), @issue_customer.map.url(:original) ) %></td>
 	</tr>
 </table>
 
