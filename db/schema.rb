@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140728064055) do
+ActiveRecord::Schema.define(version: 20140911091656) do
 
   create_table "adv_advsizes", force: true do |t|
     t.string   "code"
@@ -104,9 +104,10 @@ ActiveRecord::Schema.define(version: 20140728064055) do
   end
 
   create_table "issue_cpublishes", force: true do |t|
-    t.integer  "issue_publish_id"
+    t.integer  "publish_id"
     t.string   "c_code"
     t.integer  "quantity"
+    t.integer  "free_copy"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -142,6 +143,16 @@ ActiveRecord::Schema.define(version: 20140728064055) do
 
   create_table "issue_publishes", force: true do |t|
     t.date     "date"
+    t.string   "operator"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "issue_returns", force: true do |t|
+    t.date     "date"
+    t.string   "c_code"
+    t.integer  "qty"
+    t.string   "remark"
     t.string   "operator"
     t.datetime "created_at"
     t.datetime "updated_at"

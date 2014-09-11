@@ -1,0 +1,45 @@
+
+<h1><%= t('show_issue_customer_publish_summary') %></h1>
+
+
+<table>
+	<tr>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th>Selectd Period</th>
+		</tr>
+	</thead>
+
+	<tr>
+		<td><%= @sdate %>---<%= @edate %></td>
+	</tr>
+</table>
+
+<table>
+	<tr>
+	</tr>
+	<tr>
+		<td>总发行量：<%= @total_issue_quantity %></td>
+		<td>总赠阅量：<%= @total_free_copy %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th>发行赠阅统计</th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= render "issue/publishes/charts/summary/issue_distribution" %></td>
+	</tr>
+</table>
+<table>
+	<tr>
+
+	</tr>
+</table>

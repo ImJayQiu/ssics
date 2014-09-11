@@ -2,10 +2,10 @@
 <%= pie_chart  @issue_customers.group(:area).count, 
 	library: {
 	title: {
-		text: 'Customers Distribution by Area'
+		text: t('issue_customers_distribution_by_area')
 	},
 	subtitle: {
-		text: 'Total Quantity : ' + @total_count.to_s
+		text: t('total_quantity') + " : " + @total_count.to_s
 	},
 	plotOptions: {
 		pie: {

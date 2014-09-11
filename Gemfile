@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+#For clone nested form
+gem 'deep_cloneable','~>2.0.0'
+
 # for charting
 gem 'chartkick'
 

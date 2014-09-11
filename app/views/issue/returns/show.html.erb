@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @issue_return.date %>
+</p>
+
+<p>
+  <strong>C code:</strong>
+  <%= @issue_return.c_code %>
+</p>
+
+<p>
+  <strong>Qty:</strong>
+  <%= @issue_return.qty %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @issue_return.remark %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @issue_return.operator %>
+</p>
+
+<%= link_to 'Edit', edit_issue_return_path(@issue_return) %> |
+<%= link_to 'Back', issue_returns_path %>

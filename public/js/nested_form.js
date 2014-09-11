@@ -1,3 +1,25 @@
+/* datepicker select  */
+$(function() {
+	$( "#datepicker" ).datepicker();
+});
+
+
+$(document).ready(function(){
+	$("#sdate").datepicker({
+		dateFormat: "yy-mm-dd",
+		onSelect: function(selected) {
+			$("#edate").datepicker("option","minDate", selected)
+		}
+	});
+	$("#edate").datepicker({ 
+		dateFormat: "yy-mm-dd",
+		onSelect: function(selected) {
+			$("#sdate").datepicker("option","maxDate", selected)
+		}
+	});  
+});
+/* datepicker end */
+
 
 function remove_fields(link) {
 	$(link).prev("input[type=hidden]").val("1");
@@ -10,29 +32,6 @@ function add_fields(link, association, content) {
 		$(link).parent().before(content.replace(regexp, new_id));
 }
 
-
-/*
-   $(document).ready(function() {
-   $('#areas_select').change(function() {
-   $.ajax({
-   url: "<%= update_provinces_path %>",
-   data: {
-   area_id : $('#areas_select').val()
-   },
-   dataType: "script"
-   });
-   });
-   $('#issue_customer_province').change(function() {
-   $.ajax({
-   url: "<%= update_cities_path %>",
-   data: {
-   province_id : $('#issue_customer_provinces').val()
-   },
-   dataType: "script"
-   });
-   });
-   });
-   */
 
 /* For dynamic select  */
 jQuery(function() {
@@ -73,3 +72,15 @@ jQuery(function() {
 		}
 	});
 }); 
+
+/* for webpage printing */
+function doPrint(id) { 
+	bdhtml=window.document.body.innerHTML; 
+	sprnstr="<!--sprint-"+id+"-->"; 
+
+	eprnstr="<!--eprint-"+id+"-->"; 
+	prnhtml=bdhtml.substr(bdhtml.indexOf(sprnstr)+17); 
+	prnhtml=prnhtml.substring(0,prnhtml.indexOf(eprnstr)); 
+	window.document.body.innerHTML=prnhtml; 
+	window.print(); 
+}

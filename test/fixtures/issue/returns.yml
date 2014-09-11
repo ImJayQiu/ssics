@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2014-09-11
+  c_code: MyString
+  qty: 1
+  remark: MyString
+  operator: MyString
+
+two:
+  date: 2014-09-11
+  c_code: MyString
+  qty: 1
+  remark: MyString
+  operator: MyString

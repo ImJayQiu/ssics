@@ -100,6 +100,6 @@ class Issue::CustomersController < ApplicationController
 	def issue_customer_params
 		params.require(:issue_customer).permit(
 			:code, :c_name, :c_address, :area, :province, :city, 
-			:c_type, :p_name, :email, :phone, :fax, :map)
+			:c_type, :p_name, :email, :phone, :fax, :map, :remark)
 	end
 end

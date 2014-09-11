@@ -42,7 +42,7 @@
 		<%= f.fields_for :provinces do |province| %>
 			<%= render "province_fields", f: province %>
 		<% end %>
-		<p><%= link_to_add_fields ">> Add Province", f, :provinces %></p>
+		<p><%= link_to_add_fields t('add_province'), f, :provinces %></p>
 
 
 

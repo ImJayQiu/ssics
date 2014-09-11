@@ -1,0 +1,22 @@
+<%= pie_chart [["订阅量", @total_issue_quantity], ["赠阅量", @total_free_copy]], 
+	library: {
+	title: {
+		text: "发行赠阅对比统计"
+	},
+	subtitle: {
+		text: t('total_quantity') + " : " + @total_quantity.to_s
+	},
+	plotOptions: {
+		pie: {
+			size:'100%',
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true,
+				format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+			}
+		}
+	}
+
+}
+%>

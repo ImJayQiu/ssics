@@ -1,0 +1,19 @@
+
+<div class="fields">
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('issue_customer_code')  %></th>
+				<th><%= t('issue_customer_quantity')  %></th>
+				<th><%= t('issue_customer_free_copy')  %></th>
+				<th><%= t('operations')  %></th>
+			</tr>
+		</thead>
+		<tr>
+			<td><%= f.text_field :c_code %></td>
+			<td><%= f.text_field :quantity %></td>
+			<td><%= f.text_field :free_copy %></td>
+			<td><%= link_to_remove_fields t('del'), f %></td>
+		</tr>
+	</table>
+</div>
