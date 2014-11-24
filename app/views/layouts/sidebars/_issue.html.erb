@@ -10,18 +10,20 @@
 	</header>
 	<footer>
 	<ul>
-		<% if can? :manage, :issue_areas  %>
+		<% if can? :view, :issue_areas  %>
 			<li>- <%= link_to t('issue_areas_setting'), issue_areas_path %></li>
 		<% end %>
-		<% if can? :manage, :issue_customer_types  %>
+		<% if can? :view, :issue_customer_types  %>
 			<li>- <%= link_to t('issue_customer_types'), issue_types_path %></li>
 		<% end %>
-
-		<% if can? :manage, :issue_customers  %>
+		<% if can? :view, :issue_customers  %>
 			<li>- <%= link_to t('issue_customers_management'), issue_customers_path %></li>
 		<% end %>
-		<% if can? :manage, :issue_customers  %>
+		<% if can? :view, :issue_publish  %>
 			<li>- <%= link_to t('issue_publish_management'), issue_publishes_path %></li>
+		<% end %>
+		<% if can? :view, :issue_return  %>
+			<li>- <%= link_to t('issue_return_management'), issue_returns_path %></li>
 		<% end %>
 	</ul>
 	</footer>

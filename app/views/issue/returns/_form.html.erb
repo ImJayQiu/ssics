@@ -1,37 +1,56 @@
-<%= form_for(@issue_return) do |f| %>
-  <% if @issue_return.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@issue_return.errors.count, "error") %> prohibited this issue_return from being saved:</h2>
 
-      <ul>
-      <% @issue_return.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<% if can? :manage, :issue_return  %>
+	<%= form_for(@issue_return) do |f| %>
+		<% if @issue_return.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@issue_return.errors.count, "error") %> prohibited this issue_return from being saved:</h2>
+
+				<ul>
+					<% @issue_return.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('issue_customer_code') %></th>
+					<th>返还报纸日期</th>
+					<th><%= t('return_qty') %></th>
+				</tr>
+			</thead>
+			<tr>
+				<th><%= f.text_field :c_code %></td>
+				<td><%= f.text_field :date, id: :datepicker %></td>
+				<td><%= f.number_field :qty %></td>
+			</tr>
+		</table>
+
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('remark') %></th>
+				</tr>
+			</thead>
+			<tr>
+				<td><%= f.text_area :remark %></td>
+			</tr>
+		</table>
+
+	</div>
+	<div class="field">
+		经办人|Operator： <%= current_user.name %>
+	<%= f.hidden_field :operator, value: current_user.name %>
+</div>
+<table>
+	<thead>
+		<tr>
+			<th><%= f.submit t('submit') %></th>
+		<% end %>
+		<th><%= button_to t('back'), issue_returns_path, method: :get %></th>
+	</tr>
+</thead>
+  </table>
   <% end %>
-
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :c_code %><br>
-    <%= f.text_field :c_code %>
-  </div>
-  <div class="field">
-    <%= f.label :qty %><br>
-    <%= f.number_field :qty %>
-  </div>
-  <div class="field">
-    <%= f.label :remark %><br>
-    <%= f.text_field :remark %>
-  </div>
-  <div class="field">
-    <%= f.label :operator %><br>
-    <%= f.text_field :operator %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>

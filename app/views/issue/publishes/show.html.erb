@@ -1,56 +1,86 @@
 
-<h1><%= t('show_issue_customer_publish') %></h1>
+<% if can? :view, :issue_publish  %>
+	<h1><%= t('show_issue_customer_publish') %></h1>
 
-<table>
-	<tr>
-		<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
-		<td><%= button_to t('print_labels'), controller: "issue/publishes", action: "plabel", id: @issue_publish.id, method: :post %></td>
-		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
-
-	</tr>
-</table>
-
-<table>
-	<thead>
+	<table>
 		<tr>
-			<th><%= t('publish_date') %></th>
-			<th><%= t('publish_total_order_quantity') %></th>
-			<th><%= t('publish_total_free_copy') %></th>
-			<th><%= t('publish_total_quantity') %></th>
+			<%= form_tag({:controller=>"issue/publishes", :action=>"plabel" , id: @issue_publish.id}, :method => "post") do  %>  
+				<td>Select Type : <%= collection_select :c_type, params[:c_type], Issue::Type.all.sort, :code, :code, prompt: "- ALL -" %>
+				<%= submit_tag "Print", :class => "submit" %></td>
+			<% end %>
+			<td><%#= button_to t('print_labels'), controller: "issue/publishes", action: "plabel", id: @issue_publish.id, method: :post %></td>
+			<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
+			<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+
 		</tr>
-	</thead>
+	</table>
 
-	<tr>
-		<td><%= @issue_publish.date %></td>
-		<td><%= @total_order_quantity rescue nil %></td>
-		<td><%= @total_free_copy rescue nil %></td>
-		<td><%= @total_publish_quantity %></td>
-	</tr>
-</table>
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('publish_date') %></th>
+				<th><%= t('publish_total_order_quantity') %></th>
+				<th><%= t('publish_total_free_copy') %></th>
+				<th><%= t('publish_total_quantity') %></th>
+			</tr>
+		</thead>
 
-<table>
-	<tr>
-		<th><%= t('index') %></th>
-		<th><%= t('issue_customer_code') %></th>
-		<th><%= t('issue_customer_quantity')%></th>
-		<th><%= t('issue_customer_free_copy')%></th>
-	</tr>
-	<% @issue_publish.cpublishes.each_with_index do |c,i|  %>
-		<% @customer_id = c.c_code[-3,3].to_i %>
 		<tr>
-			<td><%= i+1 %></td>
-			<td><%= link_to c.c_code, issue_customer_path(@customer_id) %></td>
-			<td><%= c.quantity %></td>
-			<td><%= c.free_copy %></td>
+			<td><%= @issue_publish.date %></td>
+			<td><%= @total_order_quantity rescue nil %></td>
+			<td><%= @total_free_copy rescue nil %></td>
+			<td><%= @total_publish_quantity %></td>
 		</tr>
-	<% end %>
-</table>
+	</table>
 
-<table>
-	<tr>
-		<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
-		<td><%= button_to t('Print Label'), controller: "issue/publishes", action: "plabel", id: @issue_publish.id, method: :post %></td>
-		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
 
-	</tr>
-</table>
+
+
+	<table>
+		<% @issue_publish_group.each do |t,publish|  %>
+			<thead>
+				<tr>
+					<th><%= t('customer_type') %></th>
+					<th><%= t('publish_total_order_quantity') %></th>
+					<th><%= t('publish_total_free_copy') %></th>
+					<th><%= t('publish_total_quantity') %></th>
+				</tr>
+			</thead>
+
+			<tr>
+				<td><%= t %> | <%= Issue::Type.where(code: t).first.c_type %></td>
+				<td><%= @type_qty = @issue_publish_group[t].sum(&:quantity) rescue nil %></td>
+				<td><%= @type_fc = @issue_publish_group[t].sum(&:free_copy) rescue nil %></td>
+				<td><%= @type_qty + @type_fc rescue nil %></td>
+			</tr>
+
+			<tr>
+				<th><%= t('index') %></th>
+				<th><%= t('issue_customer_code') %></th>
+				<th><%= t('issue_customer_quantity')%></th>
+				<th><%= t('issue_customer_free_copy')%></th>
+			</tr>
+			<% publish.each_with_index do |c,i|  %>
+				<% @customer_id = c.c_code[-4,4].to_i %>
+				<tr>
+					<td><%= i+1 %></td>
+					<td><%= link_to c.c_code, issue_customer_path(@customer_id) %></td>
+					<td><%= c.quantity %></td>
+					<td><%= c.free_copy %></td>
+				</tr>
+			<% end %>
+		<% end %>
+	</table>
+
+
+
+
+	<table>
+		<tr>
+			<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
+			<td><%= button_to t('print_labels'), controller: "issue/publishes", action: "plabel", id: @issue_publish.id, method: :post %></td>
+			<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+
+		</tr>
+	</table>
+<% end %>

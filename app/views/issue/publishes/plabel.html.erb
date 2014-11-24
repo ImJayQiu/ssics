@@ -1,90 +1,90 @@
 
-<h1><%= t('show_issue_customer_publish') %></h1>
+<% if can? :view, :issue_publish  %>
+	<h1><%= t('show_issue_customer_publish') %></h1>
 
-<table>
-	<tr>
-		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
-		<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
-		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
-	</tr>
-</table>
+	<table align="center">
+		<tr>
+			<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+			<td>Total Customer: <%= @issue_publish.count %> | Total Pages: <%= number_with_precision( @issue_publish.count.to_f/3, precision: 1 ) %></td>
+			<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+		</tr>
+	</table>
+	<p></p>
+	<!--sprint-1-->
+	<% @issue_publish.each_slice(3) do |cpublishes|  %>
+		<div style="page-break-after: always">
+			<% cpublishes.each_with_index do |c,i|  %>
+				<% @customer_id = c.c_code[-4,4].to_i %>
+				<% @customer = Issue::Customer.where(id: @customer_id).first rescue nil %>
 
-<!--sprint-1-->
-<% @issue_publish.cpublishes.each_slice(3) do |cpublishes|  %>
-	<div style="page-break-after: always">
-		<% cpublishes.each_with_index do |c,i|  %>
-			<% @customer_id = c.c_code[-3,3].to_i %>
-			<% @customer = Issue::Customer.where(id: @customer_id).first rescue nil %>
+				<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+					<tr align="center">
+						<td align="center">
+							<font size="6">
+								<%= t('issue_label_title') %>
+							</font>
+						</td>
+					</tr>
 
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740">
-				<tr align="center">
-					<td align="center">
-						<font size="13">
-							<%= t('issue_label_title') %>
-						</font>
+					<tr align="center">
+						<td align="center">
+							<%= t('issue_label_address') %>
+							<br/>
+							<%= t('issue_label_tel') %>
+						</td>
+					</tr>
+				</table>
+
+				<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+					<tr align="center">
+						<td>
+							<%= t('issue_customer_code') %> : <%= c.c_code %>   |   
+							<%= t('issue_customer_quantity')%> : <%= c.quantity %>   |   
+							<%= t('issue_customer_free_copy')%> : <%= c.free_copy %>
+						</td>
+					</tr>
+				</table>
+
+				<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+					<!--
+					<tr align="center">
+						<td align="center">
+							<%#= t('issue_customer_name')%>
+						</td>
+						<td align="center">
+							Total<%#= t('publish_total_quantity')%>
 					</td>
 				</tr>
-
+				-->
 				<tr align="center">
-					<td align="center">
-						<%= t('issue_label_address') %>
-						<br>
-						<%= t('issue_label_tel') %>
+					<td align="center" width="85%" style="height:32mm">
+						<font size="7">
+							<%= @customer.c_name rescue nil %><br/>
+							<%= @customer.c_name2 rescue nil %>
+						</font>
+					</td>
+					<td align="center" width="15%" style="height:32mm">
+						<font size="8">
+							<%= (c.quantity + c.free_copy).to_s rescue nil %>
+						</font>
 					</td>
 				</tr>
 			</table>
 
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740">
+			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
 				<tr align="center">
-					<td align="center" width="35%">
-						<%= t('issue_customer_code') %> : <%= c.c_code %>
-					</td>
-					<td align="center" width="35%">
-						<%= t('issue_customer_quantity')%> : <%= c.quantity %>
-					</td>
-					<td align="center" width="35%">
-						<%= t('issue_customer_free_copy')%> : <%= c.free_copy %>
-					</td>
-				</tr>
-			</table>
-
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740">
-				<tr align="center">
-					<td align="center">
-						<%= t('issue_customer_name')%>
-					</td>
-					<td align="center">
-						<%= t('publish_total_quantity')%>
-					</td>
-				</tr>
-				<tr align="center">
-					<td align="center" width="70%">
-						<font size="18">
-							<%= @customer.c_name rescue nil %>
-						</font>
-					</td>
-					<td align="center" width="30%">
-						<font size="20">
-							<%= c.quantity + c.free_copy rescue nil %>
-						</font>
-					</td>
-				</tr>
-			</table>
-
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740">
-				<tr align="center">
-					<td align="center">
-						<%= t('issue_customer_address')%> : 
+					<td align="center"  style="height:10mm" >
+						<%#= t('issue_customer_address')%> 
 						<%= @customer.c_address rescue nil %>
 					</td>
 				</td>
 			</tr>
 		</table>
 
-		<table align="center" width="740" >
+		<table align="center" width="742mm" >
 			<tr align="center">
-				<td align="center">
-					. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+				<td align="center" style="height:10mm">
+					. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 				</td>
 			</tr>
 		</table>
@@ -96,9 +96,9 @@
 
 <table>
 	<tr>
-		<input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/>
-		<td><%= button_to t('edit'), edit_issue_publish_path(@issue_publish), method: :get %></td>
+		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
 		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
 
 	</tr>
 </table>
+<% end %>

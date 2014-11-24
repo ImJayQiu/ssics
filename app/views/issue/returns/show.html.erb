@@ -1,29 +1,77 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @issue_return.date %>
-</p>
+  <table>
+	  <thead>
+		  <tr>
+			  <th><%= button_to t('edit'), edit_issue_return_path(@issue_return), method: :get %></th> 
+			  <th> <%= button_to t('back'), issue_returns_path, method: :get %></th>
+		  </tr>
+	  </thead>
+  </table>
+<table>
 
-<p>
-  <strong>C code:</strong>
-  <%= @issue_return.c_code %>
-</p>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_code') %></th>
+			<th>Date of Newspaper</th>
+			<th><%= t('return_qty') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<th><%= @issue_return.c_code rescue nil%></td>
+		<td><%= @issue_return.date.strftime("%Y-%m") rescue nil %></td>
+		<td><%= @issue_return.qty  rescue nil %></td>
+	</tr>
+</table>
 
-<p>
-  <strong>Qty:</strong>
-  <%= @issue_return.qty %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th colspan="2">Customer Information</th>
+		</tr>
+		<tr>
+			<th><%= t('issue_customer_name') %></th>
+			<th><%= t('issue_customer_type') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @customer.c_name rescue nil%><br/><%= @customer.c_name2 rescue nil%></td>
+		<td><%= Issue::Type.where(code: @customer.c_type).first.c_type rescue nil%></td>
+	</tr>
+</table>
 
-<p>
-  <strong>Remark:</strong>
-  <%= @issue_return.remark %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('issue_customer_address') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @customer.c_address rescue nil%></td>
+	</tr>
+</table>
 
-<p>
-  <strong>Operator:</strong>
-  <%= @issue_return.operator %>
-</p>
+<table>
+	<thead>
+		<tr>
+			<th><%= t('remark') %></th>
+		</tr>
+	</thead>
+	<tr>
+		<td><%= @issue_return.remark %></td>
+	</tr>
+</table>
 
-<%= link_to 'Edit', edit_issue_return_path(@issue_return) %> |
-<%= link_to 'Back', issue_returns_path %>
+</div>
+<div class="field">
+	经办人|Operator：<%= @issue_return.operator rescue nil %>
+  </div>
+
+  <table>
+	  <thead>
+		  <tr>
+			  <th><%= button_to t('edit'), edit_issue_return_path(@issue_return), method: :get %></th> 
+			  <th> <%= button_to t('back'), issue_returns_path, method: :get %></th>
+		  </tr>
+	  </thead>
+  </table>

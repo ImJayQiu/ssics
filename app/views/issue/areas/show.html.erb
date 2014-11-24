@@ -1,65 +1,69 @@
 
-<h1><%= t('show_issue_area') %></h1>
+<% if can? :view, :issue_areas  %>
 
-<table>
-	<thead>
+	<h1><%= t('show_issue_area') %></h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('area_code') %></th>
+				<th><%= t('area_name') %></th>
+			</tr>
+		</thead>
+
 		<tr>
-			<th><%= t('area_code') %></th>
-			<th><%= t('area_name') %></th>
+			<td><%= @issue_area.code %></td>
+			<td><%= t(@issue_area.area) %></td>
 		</tr>
-	</thead>
+	</table>
 
-	<tr>
-		<td><%= @issue_area.code %></td>
-		<td><%= t(@issue_area.area) %></td>
-	</tr>
-</table>
+	<% @issue_area.provinces.each do |p|  %>
+		<table>
+			<tr>
+				<th><%= t('province_code') %></th>
+				<th><%= t('province_name') %></th>
+			</tr>
+			<tr>
+				<td><%= p.code %></td>
+				<td><%= p.province %></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<table>
+						<tr>
+							<td><%= t('index') %></td>
+							<td><%= t('city_code') %></td>
+							<td><%= t('city_name') %></td>
+						</tr>
+						<% p.cities.each_with_index do |c,i|  %>
+							<tr>
+								<td><%= i+1 %></td>
+								<td><%= c.code %></td>
+								<td><%= c.city %></td>
+							</tr>
+						<% end %>
+					</table>
+				</td>
+			</tr>
+		</table>
+	<% end %>
 
-<% @issue_area.provinces.each do |p|  %>
 	<table>
 		<tr>
-			<th><%= t('province_code') %></th>
-			<th><%= t('province_name') %></th>
+			<td><%= t('remark') %> : </td>
 		</tr>
 		<tr>
-			<td><%= p.code %></td>
-			<td><%= p.province %></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<table>
-					<tr>
-						<td><%= t('index') %></td>
-						<td><%= t('city_code') %></td>
-						<td><%= t('city_name') %></td>
-					</tr>
-					<% p.cities.each_with_index do |c,i|  %>
-						<tr>
-							<td><%= i+1 %></td>
-							<td><%= c.code %></td>
-							<td><%= c.city %></td>
-						</tr>
-					<% end %>
-				</table>
+			<td>
+				<%= @issue_area.remark %>
 			</td>
 		</tr>
 	</table>
+
+	<table>
+		<tr>
+			<td><%= button_to t('edit'), edit_issue_area_path(@issue_area), method: :get %></td>
+			<td><%= button_to t('back'), issue_areas_path, method: :get %></td>
+		</tr>
+	</table>
+
 <% end %>
-
-<table>
-	<tr>
-		<td><%= t('remark') %> : </td>
-	</tr>
-	<tr>
-		<td>
-			<%= @issue_area.remark %>
-		</td>
-	</tr>
-</table>
-
-<table>
-	<tr>
-		<td><%= button_to t('edit'), edit_issue_area_path(@issue_area), method: :get %></td>
-		<td><%= button_to t('back'), issue_areas_path, method: :get %></td>
-	</tr>
-</table>

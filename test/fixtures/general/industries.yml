@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  code: MyString
+  tname: MyString
+  cname: MyString
+  ename: MyString
+  remark: MyString
+
+two:
+  code: MyString
+  tname: MyString
+  cname: MyString
+  ename: MyString
+  remark: MyString

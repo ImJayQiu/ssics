@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Code:</strong>
+  <%= @general_industry.code %>
+</p>
+
+<p>
+  <strong>Tname:</strong>
+  <%= @general_industry.tname %>
+</p>
+
+<p>
+  <strong>Cname:</strong>
+  <%= @general_industry.cname %>
+</p>
+
+<p>
+  <strong>Ename:</strong>
+  <%= @general_industry.ename %>
+</p>
+
+<p>
+  <strong>Remark:</strong>
+  <%= @general_industry.remark %>
+</p>
+
+<%= link_to 'Edit', edit_general_industry_path(@general_industry) %> |
+<%= link_to 'Back', general_industries_path %>

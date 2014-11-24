@@ -1,54 +1,62 @@
 <h1><%= t('listing_publish_record') %></h1>
-<table>
-	<tr>
-		<td><%= button_to t('new'), new_issue_publish_path, method: :get %></td>
-		<td><%= will_paginate @issue_publishes %></td>
-	</tr>
-</table>
+<% if can? :view, :issue_publish  %>
+	<table>
+		<tr>
+			<% if can? :manage, :issue_publish  %>
+				<td><%= button_to t('new'), new_issue_publish_path, method: :get %></td>
+			<% end %>
+			<td><%= will_paginate @issue_publishes %></td>
+		</tr>
+	</table>
 
-<%= form_tag({:controller=>"issue/publishes", :action=>"summary" }, :method => "get") do %>  
+	<%= form_tag({:controller=>"issue/publishes", :action=>"summary" }, :method => "get") do  %>  
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('start_date') %></th>
+					<th><%= t('end_date') %></th>
+					<th>Operation</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><%= text_field "sdate", params['sdate'], id: "sdate" %></td>
+				<td><%= text_field "edate", params['edate'], id: "edate" %></td>
+				<td><%= submit_tag "Submit | 提 交", :class => "submit" %></td>
+			</tr>
+		</table>
+	<% end %>
+
 	<table>
 		<thead>
 			<tr>
-				<th><%= t('start_date') %></th>
-				<th><%= t('end_date') %></th>
-				<th>Operation</th>
+				<th><%= t('publish_date') %></th>
+				<th colspan="4"><%= t('operations')%></th>
 			</tr>
 		</thead>
+
+		<tbody>
+			<% @issue_publishes.each do |issue_publish| %>
+				<tr>
+					<td><%= issue_publish.date %></td>
+					<td><%= button_to t('show'), issue_publish, method: :get %></td>
+					<% if can? :manage, :issue_publish  %>
+						<td><%= button_to t('edit'), edit_issue_publish_path(issue_publish), method: :get %></td>
+						<td><%= button_to t('del'), issue_publish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+						<td><%= button_to t('copy'), controller: "issue/publishes", action: "copy", id: issue_publish.id, method: :post %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+
+	<br>
+
+	<table>
 		<tr>
-			<td><%= text_field "sdate", params[:sdate], id: "sdate" %></td>
-			<td><%= text_field "edate", params[:edate], id: "edate" %></td>
-			<td><%= submit_tag "Submit | 提 交", :class => "submit" %></td>
+			<% if can? :manage, :issue_publish  %>
+				<td><%= button_to t('new'), new_issue_publish_path, method: :get %></td>
+			<% end %>
+			<td><%= will_paginate @issue_publishes %></td>
 		</tr>
 	</table>
 <% end %>
-
-<table>
-	<thead>
-		<tr>
-			<th><%= t('publish_date') %></th>
-			<th colspan="4"><%= t('operations')%></th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<% @issue_publishes.each do |issue_publish| %>
-			<tr>
-				<td><%= issue_publish.date %></td>
-				<td><%= button_to t('show'), issue_publish, method: :get %></td>
-				<td><%= button_to t('edit'), edit_issue_publish_path(issue_publish), method: :get %></td>
-				<td><%= button_to t('del'), issue_publish, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-				<td><%= button_to t('copy'), controller: "issue/publishes", action: "copy", id: issue_publish.id, method: :post %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-
-<br>
-
-<table>
-	<tr>
-		<td><%= button_to t('new'), new_issue_publish_path, method: :get %></td>
-		<td><%= will_paginate @issue_publishes %></td>
-	</tr>
-</table>

@@ -1,3 +1,4 @@
+
 <%= form_for(@issue_customer) do |f| %>
 	<% if @issue_customer.errors.any? %>
 		<div id="error_explanation">
@@ -12,112 +13,154 @@
 	<% end %>
 
 
-	<table>
-		<thead>
+	<% if can? :set,:issue_price %>
+		<table>
+			<thead>
+				<tr>
+					<th><%= f.label t('issue_customer_name') %> - 1</th>
+					<th><%= f.label t('issue_customer_name') %> - 2</th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= f.label t('issue_customer_name') %></th>
-				<th><%= f.label t('issue_customer_type') %></th>
+				<td><%= @issue_customer.c_name  %></td>
+				<td><%= @issue_customer.c_name2  %></td>
 			</tr>
-		</thead>
-		<tr>
-			<td><%= f.text_field :c_name  %></td>
-			<td><%= f.collection_select :c_type, Issue::Type.all.sort, :c_type, :c_type, prompt: "- Select -" %></td>
-		</tr>
-	</table>
-
-	<table>
-		<thead>
+		</table>
+		<table>
+			<thead>
+				<tr>
+					<th>Weekday<br/>Price<br/>周一至周六价格</th>
+					<th>Sunday<br/>Price<br/>周日价格</th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= f.label t('issue_customer_address') %></th>
+				<td><%= f.text_field :price  %></td>
+				<td><%= f.text_field :price2  %></td>
 			</tr>
-		</thead>
-		<tr>
-			<td><%= f.text_field :c_address %></td>
-		</tr>
-	</table>
+		</table>
+	<% end %>
 
-
-	<table>
-		<thead>
+	<% if can? :manage, :issue_customers  %>
+		<table>
+			<thead>
+				<tr>
+					<th><%= f.label t('issue_customer_name') %> - 1</th>
+					<th><%= f.label t('issue_customer_name') %> - 2</th>
+				</tr>
+			</thead>
 			<tr>
-				<th>1:<%= f.label t('issue_customer_area') %></th>
-				<th>--></th>
-				<th>2:<%= f.label t('issue_customer_province') %></th>
-				<th>--></th>
-				<th>3:<%= f.label t('issue_customer_city') %></th>
+				<td><%= f.text_field :c_name  %></td>
+				<td><%= f.text_field :c_name2  %></td>
 			</tr>
-		</thead>
-		<tr>
-			<td>
-				<%= f.collection_select :area, Issue::Area.order(:area), :area, :area, prompt: "- Area  -" %>
-				<%#= f.collection_select :area,  @areas,  :id, :area, {:include_blank => "- Area -"}, {:id => 'areas_select'} %>
-			</td>
-			<td>--></td>
-			<td>
-				<%= f.grouped_collection_select :province, Issue::Area.includes(:provinces).order(:area), :provinces, :area, :province, :province, prompt: "- Province -"  %>
-				<%#= f.collection_select :province, @provinces, :id, :province, {include_blank: "- Province -", :id => 'provinces_select'} %>
-			</td>
-			<td>--></td>
-			<td>
-				<%= f.grouped_collection_select :city, Issue::Province.includes(:cities).order(:province), :cities, :province, :city, :city, prompt: "- City -" %>
-				<%#= f.collection_select :city, @cities, :id, :city, {include_blank: "- City -"}, {:id => 'cities_select'} %>
-			</td>
-		</tr>
-	</table>
+		</table>
 
-
-	<table>
-		<thead>
+		<table>
+			<thead>
+				<tr>
+					<th><%= f.label t('issue_customer_industry') %></th>
+					<th><%= f.label t('issue_customer_type') %></th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= t('issue_customer_map') %></th>
+				<td><%= f.collection_select :industry, General::Industry.all.sort, :code, :tname, prompt: "- Select -" %></td>
+				<td><%= f.collection_select :c_type, Issue::Type.all.sort, :code, :c_type, prompt: "- Select -" %></td>
 			</tr>
-		</thead>
-		<tr>
-			<th><%= f.file_field :map %></th>
-		</tr>
-	</table>
+		</table>
 
-	<table>
-		<thead>
+		<table>
+			<thead>
+				<tr>
+					<th><%= f.label t('issue_customer_address') %></th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= t('issue_customer_contact_name') %></th>
-				<th><%= t('issue_customer_email') %></th>
+				<td><%= f.text_field :c_address %></td>
 			</tr>
-		</thead>
-		<tr>
-			<th><%= f.text_field :p_name %></th>
-			<th><%= f.text_field :email %></th>
-		</tr>
-	</table>
+		</table>
 
-	<table>
-		<thead>
+
+		<table>
+			<thead>
+				<tr>
+					<th>1:<%= f.label t('issue_customer_area') %></th>
+					<th>--></th>
+					<th>2:<%= f.label t('issue_customer_province') %></th>
+					<th>--></th>
+					<th>3:<%= f.label t('issue_customer_city') %></th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= t('issue_customer_phone') %></th>
-				<th><%= t('issue_customer_fax') %></th>
+				<td>
+					<%= f.collection_select :area, Issue::Area.order(:area), :code, :area, prompt: "- Area  -" %>
+					<%#= f.collection_select :area,  @areas,  :id, :area, {:include_blank => "- Area -"}, {:id => 'areas_select'} %>
+				</td>
+				<td>--></td>
+				<td>
+					<%= f.grouped_collection_select :province, Issue::Area.includes(:provinces).order(:area), :provinces, :area, :province, :province, prompt: "- Province -"  %>
+					<%#= f.collection_select :province, @provinces, :id, :province, {include_blank: "- Province -", :id => 'provinces_select'} %>
+				</td>
+				<td>--></td>
+				<td>
+					<%= f.grouped_collection_select :city, Issue::Province.includes(:cities).order(:province), :cities, :province, :city, :city, prompt: "- City -" %>
+					<%#= f.collection_select :city, @cities, :id, :city, {include_blank: "- City -"}, {:id => 'cities_select'} %>
+				</td>
 			</tr>
-		</thead>
-		<tr>
-			<th><%= f.text_field :phone %></th>
-			<th><%= f.text_field :fax %></th>
-		</tr>
-	</table>
+		</table>
 
 
-	<table>
-
-		<thead>
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('issue_customer_map') %></th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= t('remark') %></th>
+				<th><%= f.file_field :map %></th>
 			</tr>
-		</thead>
+		</table>
 
-		<tr>
-			<th><%= f.text_area :remark, size: "10x5" %></th>
-		</tr>
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('issue_customer_contact_name') %></th>
+					<th><%= t('issue_customer_email') %></th>
+				</tr>
+			</thead>
+			<tr>
+				<th><%= f.text_field :p_name %></th>
+				<th><%= f.text_field :email %></th>
+			</tr>
+		</table>
 
-	</table>
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('issue_customer_phone') %></th>
+					<th><%= t('issue_customer_fax') %></th>
+				</tr>
+			</thead>
+			<tr>
+				<th><%= f.text_field :phone %></th>
+				<th><%= f.text_field :fax %></th>
+			</tr>
+		</table>
 
+
+		<table>
+
+			<thead>
+				<tr>
+					<th><%= t('remark') %></th>
+				</tr>
+			</thead>
+
+			<tr>
+				<th><%= f.text_area :remark, size: "10x5" %></th>
+			</tr>
+
+		</table>
+
+	<% end %>
 	<table>
 		<tr>
 			<th><%= f.submit t('submit') %></th>
@@ -126,4 +169,3 @@
 		<th><%= button_to t('back'), issue_customers_path, method: :get %></th>
 	</tr>
 </table>
-

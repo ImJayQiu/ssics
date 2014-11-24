@@ -1,0 +1,29 @@
+<h1>Listing general_industries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Thai</th>
+      <th>中文</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @general_industries.each do |general_industry| %>
+      <tr>
+        <td><%= general_industry.code %></td>
+        <td><%= general_industry.tname %></td>
+        <td><%= general_industry.cname %></td>
+        <td><%= link_to 'Show', general_industry %></td>
+        <td><%= link_to 'Edit', edit_general_industry_path(general_industry) %></td>
+        <td><%= link_to 'Del', general_industry, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Industry', new_general_industry_path %>

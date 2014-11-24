@@ -1,0 +1,138 @@
+<% if can? :view, :issue_publish  %>
+
+	<h1>Print Invoice</h1>
+
+	<table align="center">
+		<tr>
+			<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+			<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+		</tr>
+	</table>
+	<p></p>
+
+	<!--sprint-1-->
+	<% @customers_group.sort.each do |code,customer|  %>
+		<div style="page-break-after: always">
+			<% @customer_id = code[-4,4].to_i %>
+			<% @customer = Issue::Customer.where(id: @customer_id).first rescue nil %>
+
+			<table border="0px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+				<tr align="center">
+					<td align="center">
+						<font size="6">
+							<%= t('issue_label_title') %>
+						</font>
+					</td>
+				</tr>
+
+				<tr align="center">
+					<td align="center">
+						<%= t('issue_label_address') %>
+						<br/>
+						<%= t('issue_label_tel') %>
+					</td>
+				</tr>
+			</table>
+
+
+			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+				<tr align="center">
+					<td align="center" width="15%" style="height:20mm">
+						<%= code rescue nil %>
+					</td>
+					<td align="center" width="70%" style="height:20mm">
+						<%= @customer.c_name rescue nil %><br/>
+						<%= @customer.c_name2 rescue nil %>
+					</td>
+					<td align="center" width="15%" style="height:20mm">
+						<%= (@customers_group[code].collect(& :quantity).sum + @customers_group[code].collect(& :free_copy).sum).to_s rescue nil %>
+					</td>
+				</tr>
+			</table>
+
+			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+				<tr align="center">
+					<td align="center"  style="height:10mm" >
+						<%= @customer.c_address rescue nil %>
+					</td>
+				</tr>
+			</table>
+
+			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+				<tr align="center" style="height:10mm">
+					<th align="center" style="height:10mm">Date</th>
+					<th align="center" style="height:10mm">Quantity</th>
+					<th align="center" style="height:10mm">Net Price</th>
+					<th align="center" style="height:10mm">Daily Price</th>
+					<th align="center" style="height:10mm">Date</th>
+					<th align="center" style="height:10mm">Quantity</th>
+					<th align="center" style="height:10mm">Net Price</th>
+					<th align="center" style="height:10mm">Daily Price</th>
+				</tr>
+				<% total_price=[]  %>
+				<% customer.sort.each_slice(2) do |c|  %>
+					<tr align="center" style="height:10mm">
+						<% c.sort.each do |c|%>
+							<% 
+									w_date = Issue::Publish.where(id: c.publish_id).first.date  
+							if w_date.wday == 0 
+								net_price = @customer.price2
+								d_price = c.quantity * net_price rescue nil 
+							else 
+								net_price = @customer.price
+								d_price = c.quantity * net_price rescue nil 
+							end 
+							total_price << d_price rescue nil
+						%>
+					<td align="center" style="height:8mm">
+						<%= w_date  %> 
+					</td> 
+					<td align="center" style="height:8mm">
+						<%= c.quantity %>
+					</td>
+					<td align="center" style="height:8mm">
+						<%= net_price rescue nil %>
+					</td>
+					<td align="center" style="height:8mm">
+						<%= d_price  rescue nil %>
+					</td>
+				<% end  %>
+			</tr>
+		<% end  %>
+	</table>
+
+
+	<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+		<tr align="center">
+			<td align="center"  style="height:10mm" >
+				Total Price:<%= total_price.sum rescue nil %>
+		</td>
+	</tr>
+</table>
+
+<table align="center" width="742mm" >
+	<tr align="center">
+		<td align="center" style="height:10mm">Operator:</td>
+		<td align="center" style="height:10mm">Inspector:</td>
+		<td align="center" style="height:10mm">Customer:</td>
+	</tr>
+	<tr align="center">
+		<td align="center" style="height:10mm">Date:</td>
+		<td align="center" style="height:10mm">Date:</td>
+		<td align="center" style="height:10mm">Date:</td>
+	</tr>
+</table>
+
+</div>
+
+<% end %>
+<!--eprint-1-->
+
+<table>
+	<tr>
+		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+
+	</tr>
+</table>
+<% end %>

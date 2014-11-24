@@ -1,0 +1,2 @@
+module General::IndustriesHelper
+end

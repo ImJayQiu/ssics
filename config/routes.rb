@@ -1,12 +1,6 @@
 Rails.application.routes.draw do
 
 
-
-
-  namespace :issue do
-    resources :returns
-  end
-
 	scope "/:locale" do
 
 		namespace :purchase do
@@ -32,17 +26,20 @@ Rails.application.routes.draw do
 
 		namespace :general do
 			resources :notices
+			resources :industries
 		end
 
 
 		namespace :issue do
 			resources :areas
 			resources :provinces
+			resources :returns
 			resources :cpublishes
 			resources :publishes do
 				collection do
 					post :copy
 					post :plabel
+					post :pinvoice
 					get :summary
 				end
 			end
@@ -50,6 +47,7 @@ Rails.application.routes.draw do
 			resources :customers do
 				collection do
 					get :summary
+					post :plabel
 				end
 			end
 			resources :types

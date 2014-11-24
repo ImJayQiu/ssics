@@ -1,6 +1,6 @@
 
 
-<% if can? :view, :admin  %>
+<%  if can? :view, :admin  %>
 	<section>
 	<header>
 	<h4>
@@ -16,8 +16,10 @@
 		<% if can? :manage, :notices  %>
 			<li>- <%= link_to t('notices_management'), general_notices_path %></li>
 		<% end  %>
-
+		<% if can? :manage, :issue  %>
+			<li>- <%= link_to t('industry_management'), general_industries_path %></li>
+		<% end  %>
 	</ul>
 	</footer>
 	</section>
-<%end%>
+<%  end %>

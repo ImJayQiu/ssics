@@ -1,0 +1,25 @@
+<%= pie_chart  	@total_return.group(:c_code).sum(:qty), 
+
+# @total_return.group_by{ |r| r.date.beginning_of_month  }.sum(:qty),
+
+library: {
+	title: {
+		text: "回 报 统 计"
+	},
+	subtitle: {
+		text: t('total_return') + " : " + @total_return_quantity.to_s
+	},
+	plotOptions: {
+		pie: {
+			size:'100%',
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true,
+				format: '{point.name}</b>: {point.percentage:.1f} %'
+			}
+		}
+	}
+
+}
+		  %>

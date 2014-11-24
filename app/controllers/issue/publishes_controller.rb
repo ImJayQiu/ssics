@@ -6,14 +6,69 @@ class Issue::PublishesController < ApplicationController
 	# GET /issue/publishes.json
 	def index
 		@issue_publishes = Issue::Publish.paginate(:page => params[:page], :per_page => 20 ).order('date DESC')
-		@new_id = @issue_publishes.last.id
+		@new_id = @issue_publishes.last.id rescue nil
 	end
-# GET /issue/publishes/1
+	# GET /issue/publishes/1
 	# GET /issue/publishes/1.json
+
+	def plabel
+
+		@group_c_type = params[:c_type].first
+		#		@issue_publish_select = Issue::Publish.includes(:cpublishes).find(params[:id])
+		@issue_publish_select = Issue::Cpublish.where(publish_id: params[:id])
+		@issue_publish_group = @issue_publish_select.group_by {|c|c.c_code[0].upcase} 
+		if params[:c_type] == [""]
+			@issue_publish = @issue_publish_select
+		else
+			@issue_publish = @issue_publish_group[@group_c_type.to_s].to_a 
+		end
+
+	end
+
+	
+	def pinvoice 
+		@sdate = params[:sdate]
+		@edate = params[:edate]
+		@publish_summary = Issue::Publish.includes(:cpublishes).where(date: @sdate..@edate).order(:id)
+		@publish_ids = []
+		@publish_summary.each do |ps|
+			@publish_ids<< ps.id
+		end
+		@customers_summary = Issue::Cpublish.where(publish_id: @publish_ids)
+		@total_issue_quantity = @publish_summary.sum(:quantity)
+		@total_free_copy =  @publish_summary.sum(:free_copy) 
+		@total_quantity = @total_issue_quantity + @total_free_copy
+		@customers_group = @customers_summary.group_by { |c|c.c_code }
+		@customers_group_type = @customers_summary.group_by { |c|c.c_code[0].upcase }
+	end
+
+	def summary
+		@sdate = params['sdate'].first
+		@edate = params['edate'].first
+		@r_sdate = @sdate.to_date.strftime("%Y-%m-01")
+		@r_edate = @edate.to_date.strftime("%Y-%m-31")
+		@publish_summary = Issue::Publish.includes(:cpublishes).where(date: @sdate..@edate)
+		@publish_ids = []
+		@publish_summary.each do |ps|
+			@publish_ids<< ps.id
+		end
+		@customers_summary = Issue::Cpublish.where(publish_id: @publish_ids)
+		@total_issue_quantity = @publish_summary.sum(:quantity)
+		@total_free_copy =  @publish_summary.sum(:free_copy) 
+		@total_quantity = @total_issue_quantity + @total_free_copy
+		@total_return = Issue::Return.where( date: @r_sdate..@r_edate )
+		@total_return_quantity = @total_return.sum(:qty)
+		@total_return_month = @total_return.group_by { |r| r.date.beginning_of_month  }
+		@total_return_type_group = @total_return.group_by { |r| r.c_code[0].upcase  }
+		@customers_group = @customers_summary.group_by { |c|c.c_code }
+		@customers_group_type = @customers_summary.group_by { |c|c.c_code[0].upcase }
+	end
+
 	def show
 		@total_order_quantity = @issue_publish.cpublishes.sum(:quantity)
 		@total_free_copy = @issue_publish.cpublishes.sum(:free_copy)
 		@total_publish_quantity = @total_order_quantity +	@total_free_copy
+		@issue_publish_group = @issue_publish.cpublishes.group_by {|c|c.c_code[0].upcase} 
 	end
 
 	# GET /issue/publishes/new
@@ -74,19 +129,6 @@ class Issue::PublishesController < ApplicationController
 		end
 	end
 
-	def plabel
-		@issue_publish = Issue::Publish.find(params[:id])
-	end
-
-
-	def summary
-		@sdate = params[:sdate].first.to_date
-		@edate = params[:edate].first.to_date
-		@publish_summary = Issue::Publish.includes(:cpublishes).where(date: @sdate..@edate)
-		@total_issue_quantity = @publish_summary.sum(:quantity)
-		@total_free_copy =  @publish_summary.sum(:free_copy) 
-		@total_quantity = @total_issue_quantity + @total_free_copy
-	end
 
 	# DELETE /issue/publishes/1
 	# DELETE /issue/publishes/1.json
@@ -116,7 +158,7 @@ class Issue::PublishesController < ApplicationController
 
 		case action_name
 
-		when "plabel"
+		when "plabel",  "pinvoice"
 			"print"
 		else
 			"application"

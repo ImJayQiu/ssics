@@ -1,0 +1,22 @@
+<%= pie_chart (@customers_summary.group_by {|cs|cs.c_code[0,2].upcase }).each, 
+library: {
+	title: {
+		text: "发行区域统计"
+	},
+	subtitle: {
+		text: t('total_quantity') + " : " + @total_quantity.to_s
+	},
+	plotOptions: {
+		pie: {
+			size:'100%',
+			allowPointSelect: true,
+			cursor: 'pointer',
+			dataLabels: {
+				enabled: true,
+				format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+			}
+		}
+	}
+
+}
+%>

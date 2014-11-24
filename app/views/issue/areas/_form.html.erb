@@ -1,3 +1,5 @@
+
+	<% if can? :manage, :issue_areas  %>
 <div>
 	<%= form_for(@issue_area, html: { multipart: true }) do |f| %>
 		<% if @issue_area.errors.any? %>
@@ -72,3 +74,4 @@
 		</tr>
 	</table>
 </div>
+<% end %>

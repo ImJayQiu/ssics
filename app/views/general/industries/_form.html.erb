@@ -1,0 +1,37 @@
+<%= form_for(@general_industry) do |f| %>
+  <% if @general_industry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@general_industry.errors.count, "error") %> prohibited this general_industry from being saved:</h2>
+
+      <ul>
+      <% @general_industry.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :thai_name %><br>
+    <%= f.text_field :tname %>
+  </div>
+  <div class="field">
+    <%= f.label :chinese_name %><br>
+    <%= f.text_field :cname %>
+  </div>
+  <div class="field">
+    <%= f.label :english_name %><br>
+    <%= f.text_field :ename %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br>
+    <%= f.text_field :remark %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,45 +1,181 @@
 
-<h1><%= t('show_issue_customer_publish_summary') %></h1>
+<% if can? :view, :issue_publish  %>
+	<h1><%= t('show_issue_customer_publish_summary') %></h1>
+
+	<!-- start select another date period in summary page 
+	<%#= form_tag({:controller=>"issue/publishes", :action=>"summary" }, :method => "get") do %>  
+		<table>
+			<thead>
+				<tr>
+					<th colspan="3">Select Date | 选 择 其 他 日 期</th>
+				</tr>
+
+				<tr>
+					<th><%#= t('start_date') %></th>
+					<th><%#= t('end_date') %></th>
+					<th>Operation</th>
+				</tr>
+			</thead>
+			<tr>
+				<td><%#= text_field "sdate", params['sdate'], id: "sdate" %></td>
+				<td><%#= text_field "edate", params['edate'], id: "edate" %></td>
+				<td><%#= submit_tag "Submit | 提 交", :class => "submit" %></td>
+			</tr>
+		</table>
+		<%# end %>
+		finish select another date period in summary page  -->
+
+		<table>
+			<tr>
+				<%= form_tag({:controller=>"issue/publishes", :action=>"pinvoice" , sdate: @sdate, edate: @edate}, :method => "post") do  %>  
+					<td>Select Type : <%= collection_select :c_type, params[:c_type], Issue::Type.all.sort, :code, :code, prompt: "- ALL -" %>
+					<%= submit_tag "Print Invoice", :class => "submit" %></td>
+			<% end %>
+			<td><%#= button_to t('print_labels'), controller: "issue/publishes", action: "plabel", id: @issue_publish.id, method: :post %></td>
+		</tr>
+	</table>
 
 
-<table>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th>Selectd Period | 当 前 日 期 范 围</th>
+			</tr>
+		</thead>
+
+		<tr>
+			<td><%= @sdate %>---<%= @edate %></td>
+		</tr>
+	</table>
+
+	<table>
+		<tr>
+		</tr>
+		<tr>
+			<td>总发行量：<%= @total_issue_quantity %></td>
+			<td>总赠阅量：<%= @total_free_copy %></td>
+		</tr>
+	</table>
+
+	<table>
+		<thead>
+			<tr>
+				<th>发 行 赠 阅 统 计<br/><%= @sdate %>---<%= @edate %></th>
+
+			</tr>
+		</thead>
+		<tr>
+			<td><%= render "issue/publishes/charts/summary/issue_distribution" %></td>
+		</tr>
+		<tr>
+			<td><%= render "issue/publishes/charts/summary/issue_distribution_trend" %></td>
+		</tr>
+		<tr>
+			<td><%= render "issue/publishes/charts/summary/issue_distribution_area" %></td>
+		</tr>
+	</table>
+
+	<table>
+		<thead>
+			<tr>
+				<th>回 报 统 计<br/><%= @r_sdate %>---<%= @r_edate %></th>
+
+			</tr>
+		</thead>
+		<tr>
+			<td><%= render "issue/publishes/charts/summary/issue_return" %></td>
+		</tr>
+	</table>
+
+
+	<table>
+		<thead>
+			<tr>
+				<th colspan=6>Summary of Customers' Order  | 客户订阅详情总结</th>
+			</tr>
+		</thead>
+		<tr>
+			<th>Customer<br/>Type<br/>客户类别</th>
+			<th>Issue<br/>Qty.<br/>订阅量</th>
+			<th>Free<br/>Qty<br/>赠阅量</th>
+			<th>Return<br/>Qty<br/>回报量</th>
+			<th>Total<br/>Qty.<br/>总量</th>
+			<th>Total<br/>Price<br/>总价</th>
+		</tr>
+
+		<% @customers_group_type.sort.each do |t,gt| %>
+			<% type_rc =  @total_return_type_group[t] 
+			if type_rc.nil?
+				type_r = "0".to_i
+			else
+				type_r = type_rc.collect(&:qty).sum
+			end %>
+		<tr>
+			<td><%= t %><br/><%#= Issue::Type.where(code: t).first.c_type %></td>
+			<td><%= type_cq = @customers_group_type[t].collect(&:quantity).sum rescue nil %><br/>Copys|份</td>
+			<td><%= type_cf = @customers_group_type[t].collect(&:free_copy).sum rescue nil %><br/>Copys|份</td>
+			<td><%= type_r %><br/>Copys|份</td>
+			<td><%= type_cq + type_cf - type_r rescue nil %><br/>Copys|份</td>
+			<td><%= (type_cq-type_r)*6.5 rescue nil %><br/> Baht|泰铢 </td>
+		</tr>
+	<% end %>
+
 	<tr>
+		<td>All<br/>全部</td>
+		<td><%= tcq = @customers_summary.sum(:quantity) rescue nil %><br/>Copys|份</td>
+		<td><%= tcf = @customers_summary.sum(:free_copy) rescue nil %><br/>Copys|份</td>
+		<td><%= tr = @total_return.sum(:qty) rescue nil %><br/>Copys|份</td>
+		<td><%= tcq + tcf - tr rescue nil %><br/>Copys|份</td>
+		<td><%= (tcq-tr)*6.5 rescue nil %><br/> Baht|泰铢 </td>
 	</tr>
 </table>
 
+
+<!--testing -->
 <table>
 	<thead>
 		<tr>
-			<th>Selectd Period</th>
+			<th colspan=7>Lise of Customer's Detail | 客户订阅详情列表</th>
 		</tr>
 	</thead>
-
 	<tr>
-		<td><%= @sdate %>---<%= @edate %></td>
+		<th>Index<br/>序号</th>
+		<th>Customer<br/>Code<br/>客户编号</th>
+		<th>Issue<br/>Qty.<br/>订阅量</th>
+		<th>Free<br/>Qty<br/>赠阅量</th>
+		<th>Return<br/>Qty<br/>回报量</th>
+		<th>Total<br/>Qty.<br/>总量</th>
+		<th>Price<br/>总价</th>
 	</tr>
-</table>
-
-<table>
-	<tr>
-	</tr>
-	<tr>
-		<td>总发行量：<%= @total_issue_quantity %></td>
-		<td>总赠阅量：<%= @total_free_copy %></td>
-	</tr>
-</table>
-
-<table>
-	<thead>
+	<%	@customers_group.sort.each_with_index do |(cg,c),i| %>
+		<% @customer_id = cg[-4,4].to_i %>
+		<% @customer = Issue::Customer.where(id: @customer_id).first rescue nil %>
 		<tr>
-			<th>发行赠阅统计</th>
+			<td><%= i+1 %></td>
+			<td>
+				<%= cg rescue nil %>
+				<br/>
+				<%= @customer.c_name rescue nil %>
+				<br/>
+				<%= @customer.c_name2 rescue nil %>
+			</td>
+			<td><%= cq = @customers_group[cg].collect(&:quantity).sum rescue nil %></td>
+			<td><%= cf = @customers_group[cg].collect(&:free_copy).sum rescue nil %></td>
+			<td><%= r = @total_return.where( c_code: cg ).sum(:qty) rescue nil %></td>
+			<td><%= cq + cf - r rescue nil %></td>
+			<td><%= (cq-r)*@customer.price.to_f rescue nil %> Baht </td>
 		</tr>
-	</thead>
+	<% end %>
 	<tr>
-		<td><%= render "issue/publishes/charts/summary/issue_distribution" %></td>
+		<td colspan=2>Publish Summary<br/>发行量汇总</td>
+		<td><%= tcq = @customers_summary.sum(:quantity) rescue nil %><br/>Copys|份</td>
+		<td><%= tcf = @customers_summary.sum(:free_copy) rescue nil %><br/>Copys|份</td>
+		<td><%= tr = @total_return.sum(:qty) rescue nil %><br/>Copys|份</td>
+		<td><%= tcq + tcf - tr rescue nil %><br/>Copys|份</td>
+		<td><%= (tcq-tr)*6.5 rescue nil %><br/> Baht|泰铢 </td>
 	</tr>
 </table>
-<table>
-	<tr>
 
-	</tr>
-</table>
+<% end %>

@@ -1,33 +1,57 @@
 <h1>Listing issue_returns</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>C code</th>
-      <th>Qty</th>
-      <th>Remark</th>
-      <th>Operator</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% if can? :view, :issue_return  %>
+	<table>
+		<tr>
+			<% if can? :manage, :issue_return  %>
+				<td><%= button_to t('new'), new_issue_return_path, method: :get %></td>
+			<% end %>
+			<td><%= will_paginate @issue_returns %></td>
+		</tr>
+	</table>
 
-  <tbody>
-    <% @issue_returns.each do |issue_return| %>
-      <tr>
-        <td><%= issue_return.date %></td>
-        <td><%= issue_return.c_code %></td>
-        <td><%= issue_return.qty %></td>
-        <td><%= issue_return.remark %></td>
-        <td><%= issue_return.operator %></td>
-        <td><%= link_to 'Show', issue_return %></td>
-        <td><%= link_to 'Edit', edit_issue_return_path(issue_return) %></td>
-        <td><%= link_to 'Destroy', issue_return, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<table>
+		<thead>
+			<tr>
+				<th><%= t('created_date') %></th>
+				<th><%= t('newspaper_return_month') %></th>
+				<th><%= t('issue_customer_code') %></th>
+				<th><%= t('return_qty') %></th>
+				<th colspan="3"><%= t('operations')%></th>
+			</tr>
+		</thead>
 
-<br>
+		<tbody>
+			<% @issue_returns.each do |issue_return| %>
+				<tr>
+					<td>
+						<%= issue_return.created_at.strftime("%Y") rescue nil %>
+						<br/>
+						<%= issue_return.created_at.strftime("%m-%d") rescue nil %>
+					</td>
+					<td>
+						<%= issue_return.date.strftime("%Y") rescue nil %>
+						<br/>
+						<%= issue_return.date.strftime("%m") rescue nil %>
+					</td>
+					<td><%= issue_return.c_code %></td>
+					<td><%= issue_return.qty %></td>
+					<td><%= button_to t('show'), issue_return, method: :get %></td>
+					<% if can? :manage, :issue_return  %>
+						<td><%= button_to t('edit'), edit_issue_return_path(issue_return), method: :get %></td>
+						<td><%= button_to t('del'), issue_return, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+					<% end %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
 
-<%= link_to 'New Return', new_issue_return_path %>
+	<table>
+		<tr>
+			<% if can? :manage, :issue_return  %>
+				<td><%= button_to t('new'), new_issue_return_path, method: :get %></td>
+			<% end %>
+			<td><%= will_paginate @issue_returns %></td>
+		</tr>
+	</table>
+<% end %>

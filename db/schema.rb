@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140911091656) do
+ActiveRecord::Schema.define(version: 20140916092901) do
 
   create_table "adv_advsizes", force: true do |t|
     t.string   "code"
@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(version: 20140911091656) do
     t.datetime "updated_at"
   end
 
+  create_table "general_industries", force: true do |t|
+    t.string   "code"
+    t.string   "tname"
+    t.string   "cname"
+    t.string   "ename"
+    t.string   "remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "general_notices", force: true do |t|
     t.date     "date"
     t.string   "notice"
@@ -131,6 +141,7 @@ ActiveRecord::Schema.define(version: 20140911091656) do
     t.string   "map_content_type"
     t.integer  "map_file_size"
     t.datetime "map_updated_at"
+    t.string   "industry",         limit: 45
   end
 
   create_table "issue_provinces", force: true do |t|

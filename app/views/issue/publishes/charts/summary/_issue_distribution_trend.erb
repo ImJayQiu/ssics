@@ -1,0 +1,15 @@
+
+<%= line_chart  [
+	{ name: "总发行量", data:  @publish_summary.group(:date).order(:date).sum("quantity+free_copy").each },
+	{ name: "订阅量", data:  @publish_summary.group(:date).order(:date).sum(:quantity).each },
+	{ name: "赠阅量", data:  @publish_summary.group(:date).order(:date).sum(:free_copy).each }
+],
+library: {
+	title: {
+		text: "发行赠阅趋势"
+	},
+	subtitle: {
+		text: t('total_quantity') + " : " + @total_quantity.to_s
+	}
+
+} %>

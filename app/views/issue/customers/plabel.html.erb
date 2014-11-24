@@ -1,0 +1,81 @@
+
+<h1><%= t('show_issue_customer') %></h1>
+
+<table align="center">
+	<tr>
+		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+		<td><%= button_to t('back'), issue_customers_path, method: :get %></td>
+	</tr>
+</table>
+
+<!--sprint-1-->
+
+<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740mm">
+	<tr align="center">
+		<td align="center">
+			<font size="6">
+				<%= t('issue_label_title') %>
+			</font>
+		</td>
+	</tr>
+
+	<tr align="center">
+		<td align="center">
+			<font size="5">
+				ใบรับคืนหนังสือพิมพ์    | วันที่ :
+			</font>
+		</td>
+	</tr>
+</table>
+
+<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740mm">
+	<tr>
+		<th>
+			<font size="5">
+				<%= @issue_customer.c_type rescue nil %>
+				<%= @issue_customer.area rescue nil %>
+				<%= @issue_customer.industry rescue nil %>
+				<%= "%04d" % @issue_customer.id %> | 
+				<%= @issue_customer.c_name rescue nil %>
+				<%= @issue_customer.c_name2 rescue nil %>
+			</font>
+		</th>
+	</tr>
+</table>
+<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740mm">
+	<tr>
+		<th width="30%" >วันที่ (YYYY/MM)</th>
+		<th width="20%" >Qty.</th>
+		<th width="30%" >วันที่ (YYYY/MM)</th>
+		<th width="20%" >Qty.</th>
+	</tr>
+	<% 3.times do %>
+		<tr>
+			<td style="height:9mm">	</td>
+			<td style="height:9mm">	</td>
+			<td style="height:9mm">	</td>
+			<td style="height:9mm">	</td>
+		</tr>
+	<% end %>
+</table>
+<table border="1px" align="center" cellspacing="0" cellpadding="0" width="740mm">
+	<tr>
+		<td  style="height:9mm" width="50%" >Customer Sign:</td>
+		<td  style="height:9mm" width="50%" >Singsian Staff Sign:</td>
+	</tr>
+</table>
+<table align="center" cellspacing="0" cellpadding="0" width="740mm">
+	<tr>
+		<th>
+			*ตรวจสอบสภาพและจำนวนสินค้าตามรายการข้างต้น ถูกต้องแล้ว กรุณาเซ็นต์ชื่อกำกับ
+		</th>
+	</tr>
+</table>
+<!--eprint-1-->
+
+<table align="center">
+	<tr>
+		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+		<td><%= button_to t('back'), issue_customers_path, method: :get %></td>
+	</tr>
+</table>

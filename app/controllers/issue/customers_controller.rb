@@ -1,5 +1,6 @@
 class Issue::CustomersController < ApplicationController
 	before_action :set_issue_customer, only: [:show, :edit, :update, :destroy]
+	layout :action_layout 
 
 	# GET /issue/customers
 	# GET /issue/customers.json
@@ -19,6 +20,10 @@ class Issue::CustomersController < ApplicationController
 
 	# GET /issue/customers/1/edit
 	def edit
+	end
+
+	def plabel
+		@issue_customer = Issue::Customer.find(params[:id])
 	end
 
 	# POST /issue/customers
@@ -63,23 +68,36 @@ class Issue::CustomersController < ApplicationController
 
 	def summary
 
-		@c_type = params[:c_type]
-		@province = params[:province]
 
-		if @c_type == [""]
-			if @province == [""] 
-				@issue_customers = Issue::Customer.all
-			else
-				@issue_customers = Issue::Customer.where("province=?", @province)
+		if params[:c_type] == [""]
+			@c_type = []
+			Issue::Type.all.each do |t|
+				@c_type << t.code
 			end
 		else
-			if @province==[""]
-				@issue_customers = Issue::Customer.where("c_type=?", @c_type)
-			else
-				@issue_customers = Issue::Customer.where("c_type=? && province=?", @c_type, @province)
-			end
+			@c_type = params[:c_type]
 		end
-		@total_count = @issue_customers.count
+
+		if params[:c_area] == [""]
+			@c_area = []
+			Issue::Area.all.each do |a|
+				@c_area << a.code
+			end
+		else
+			@c_area = params[:c_area]
+		end
+
+		if params[:c_industry] == [""]
+			@c_industry = []
+			General::Industry.all.each do |i|
+				@c_industry << i.code
+			end
+		else
+			@c_industry = params[:c_industry]
+		end
+
+		@issue_customers = Issue::Customer.where(c_type: @c_type,  area: @c_area,  industry: @c_industry)
+		@total_count = @issue_customers.count 
 	end
 
 	#	def update_cities
@@ -99,7 +117,20 @@ class Issue::CustomersController < ApplicationController
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def issue_customer_params
 		params.require(:issue_customer).permit(
-			:code, :c_name, :c_address, :area, :province, :city, 
-			:c_type, :p_name, :email, :phone, :fax, :map, :remark)
+			:code, :c_name, :c_name2, :c_address, :area, :province, :city, 
+			:c_type, :p_name, :email, :phone, :fax, :map, :remark, :industry, :price, :price2)
 	end
+
+	def action_layout
+
+		case action_name
+
+		when "plabel"
+			"print"
+		else
+			"application"
+		end
+
+	end
+
 end

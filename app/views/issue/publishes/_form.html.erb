@@ -1,50 +1,54 @@
-<%= form_for(@issue_publish, html: { multipart: true}) do |f| %>
-	<% if @issue_publish.errors.any? %>
-		<div id="error_explanation">
-			<h2><%= pluralize(@issue_publish.errors.count, "error") %> prohibited this issue_publish from being saved:</h2>
 
-			<ul>
-				<% @issue_publish.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
+<% if can? :manage, :issue_publish  %>
 
-	<table>
-		<thead>
+	<%= form_for(@issue_publish, html: { multipart: true}) do |f| %>
+		<% if @issue_publish.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@issue_publish.errors.count, "error") %> prohibited this issue_publish from being saved:</h2>
+
+				<ul>
+					<% @issue_publish.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('publish_date') %></th>
+				</tr>
+			</thead>
 			<tr>
-				<th><%= t('publish_date') %></th>
+				<td><%= f.date_select :date %></td>
 			</tr>
-		</thead>
-		<tr>
-			<td><%= f.date_select :date %></td>
+		</table>
+
+		<%= f.hidden_field :operator, value: current_user.name %>
+
+		<table>
+			<thead>
+				<tr>
+					<th><%= t('issue_customer_subscriptions_list') %></th>
+				</tr>
+			</thead>
+
+			<%= f.fields_for :cpublishes do |cp| %>
+				<tr>
+					<td><%= render "cpublish_fields", f: cp %></td>
+				</tr>
+			<% end %>
+		</table>
+
+		<p>>> <%= link_to_add_fields t("add_customer_publish"), f, :cpublishes %></p>
+
+		<table>
+			<tr>
+				<td><%= f.submit t('submit') %></td>
+			<% end %>
+			<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
 		</tr>
 	</table>
 
-	<%= f.hidden_field :operator, value: current_user.name %>
-
-	<table>
-		<thead>
-			<tr>
-				<th><%= t('issue_customer_subscriptions_list') %></th>
-			</tr>
-		</thead>
-
-		<%= f.fields_for :cpublishes do |cp| %>
-			<tr>
-				<td><%= render "cpublish_fields", f: cp %></td>
-			</tr>
-		<% end %>
-	</table>
-	
-	<p>>> <%= link_to_add_fields t("add_customer_publish"), f, :cpublishes %></p>
-
-	<table>
-		<tr>
-			<td><%= f.submit t('submit') %></td>
-		<% end %>
-		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
-	</tr>
-</table>
-
+<% end %>
