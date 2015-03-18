@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140916092901) do
+ActiveRecord::Schema.define(version: 20150316141501) do
 
   create_table "adv_advsizes", force: true do |t|
     t.string   "code"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20140916092901) do
   create_table "issue_customers", force: true do |t|
     t.string   "code"
     t.string   "c_name"
+    t.string   "c_name2"
     t.string   "c_address"
     t.string   "area"
     t.string   "c_type"
@@ -142,6 +143,8 @@ ActiveRecord::Schema.define(version: 20140916092901) do
     t.integer  "map_file_size"
     t.datetime "map_updated_at"
     t.string   "industry",         limit: 45
+    t.float    "price",            limit: 5
+    t.float    "price2",           limit: 5
   end
 
   create_table "issue_provinces", force: true do |t|
@@ -202,6 +205,17 @@ ActiveRecord::Schema.define(version: 20140916092901) do
     t.string   "w_location"
     t.string   "operator"
     t.string   "purchase_remark"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rimes", force: true do |t|
+    t.date     "date"
+    t.integer  "data1"
+    t.integer  "data2"
+    t.integer  "data3"
+    t.integer  "data4"
+    t.integer  "data5"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,0 +1,2 @@
+module RimesHelper
+end

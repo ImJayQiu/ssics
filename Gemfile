@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+gem 'descriptive_statistics', '~> 2.4.0', :require => 'descriptive_statistics/safe'
+
+gem 'activerecord-import'
+
+#import csv excel files
+gem 'roo'
+
 #For clone nested form
 gem 'deep_cloneable','~>2.0.0'
 

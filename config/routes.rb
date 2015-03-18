@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+
+
+
 	scope "/:locale" do
 
 		namespace :purchase do
@@ -8,6 +11,13 @@ Rails.application.routes.draw do
 		end
 
 
+
+		resources :rimes do
+			collection do
+				post :import 
+				get :summary
+			end
+		end
 
 		namespace :newspaper do
 			resources :layouts

@@ -1,0 +1,89 @@
+<h2>Rimes Data Analysis Module</h2>
+
+<%= form_tag import_rimes_path, multipart: true do %>
+	<table>
+		<thead>
+			<tr>
+				<th colspan="2">Import CSV Data</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><%= file_field_tag :file %></td>
+			<td><%= submit_tag "Import" %></td>
+		</tr>
+	</table>
+<% end %>
+
+<%= form_tag({:controller=>"rimes", :action=>"summary" }, :method => "get") do  %>  
+	<table>
+		<thead>
+			<tr>
+				<th colspan="3">Summary Report</th>
+			</tr>
+			<tr>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Operation</th>
+			</tr>
+		</thead>
+		<tr>
+			<td><%= text_field "sdate", params['sdate'], id: "sdate"  %></td>
+			<td><%= text_field "edate", params['edate'], id: "edate" %></td>
+			<td><%= submit_tag "Submit | 提 交", :class => "submit" %></td>
+		</tr>
+	</table>
+<% end %>
+
+
+<table>
+	<tr>
+		<td><%= button_to 'New Dataset', new_rime_path, method: :get %></td>
+		<td><%= will_paginate @rimes %></td>
+	</tr>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th colspan="6">List of Dataset</th>
+		</tr>
+		<tr>
+			<th>Date</th>
+			<th>Mean</th>
+			<th>S D</th>
+			<th colspan="3">Operations</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @rimes.each do |rime| 
+
+			dataset=[rime.data1,rime.data2,rime.data3,rime.data4,rime.data5] rescue nil 
+			mean = (dataset.sum.to_f/dataset.size).round(2) rescue nil
+			diffset =[] 
+			dataset.each do |d|
+				diff = (d-mean)**2
+				diffset << diff
+			end
+			sd = Math.sqrt(diffset.sum/(diffset.size-1))
+		%>
+	<tr>
+		<td><%= rime.date rescue nil %></td>
+		<td><%= mean rescue nil  %></td>
+		<td><%= sd rescue nil  %></td>
+		<td><%= link_to 'Show', rime %></td>
+		<td><%= link_to 'Edit', edit_rime_path(rime) %></td>
+		<td><%= link_to 'Del', rime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	</tr>
+<% end %>
+	</tbody>
+</table>
+
+<br>
+
+<table>
+	<tr>
+		<td><%= button_to 'New Dataset', new_rime_path, method: :get %></td>
+		<td><%= will_paginate @rimes %></td>
+	</tr>
+</table>

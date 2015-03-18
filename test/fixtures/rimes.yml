@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2015-03-16
+  data1: 1
+  data2: 1
+  data3: 1
+  data4: 1
+  data5: 1
+
+two:
+  date: 2015-03-16
+  data1: 1
+  data2: 1
+  data3: 1
+  data4: 1
+  data5: 1

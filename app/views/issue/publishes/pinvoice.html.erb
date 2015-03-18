@@ -16,7 +16,7 @@
 			<% @customer_id = code[-4,4].to_i %>
 			<% @customer = Issue::Customer.where(id: @customer_id).first rescue nil %>
 
-			<table border="0px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+			<table border="0px" align="center" cellspacing="0" cellpadding="0" width="742mm" >
 				<tr align="center">
 					<td align="center">
 						<font size="6">
@@ -28,111 +28,140 @@
 				<tr align="center">
 					<td align="center">
 						<%= t('issue_label_address') %>
-						<br/>
-						<%= t('issue_label_tel') %>
 					</td>
 				</tr>
 			</table>
+			<table align="center">
+				<tr>
+					<th>
+						ใบแจ้งหนี้หนังสือพิมพ์ ประจำเดือน : <%= @sdate.to_date.strftime("%d/%m/%Y") %> -- <%= @edate.to_date.strftime("%d/%m/%Y") %> 
+				</th>
+			</tr>
+		</table>
+
+		<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+			<tr align="center">
+				<td align="center" width="13%" style="height:10mm">
+<%= (@edate.to_date + 1.day).strftime("%d/%m/%Y")%>
+				</td>
+				<td align="center" width="15%" style="height:10mm">
+					<%= code rescue nil %>
+				</td>
+				<td align="center" width="72%" style="height:10mm">
+					<%= @customer.c_name rescue nil %> <%= @customer.c_name2 rescue nil %><br/>
+					<%= @customer.c_address rescue nil %>
+				</td>
+			</tr>
+		</table>
 
 
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
-				<tr align="center">
-					<td align="center" width="15%" style="height:20mm">
-						<%= code rescue nil %>
-					</td>
-					<td align="center" width="70%" style="height:20mm">
-						<%= @customer.c_name rescue nil %><br/>
-						<%= @customer.c_name2 rescue nil %>
-					</td>
-					<td align="center" width="15%" style="height:20mm">
-						<%= (@customers_group[code].collect(& :quantity).sum + @customers_group[code].collect(& :free_copy).sum).to_s rescue nil %>
-					</td>
-				</tr>
-			</table>
+		<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+			<tr align="center" style="height:10mm">
+				<th align="center" width="13%" style="height:10mm">วันที่</th>
+				<th align="center" width="15%" style="height:10mm">จำนวนฉบับ</th>
+				<th align="center" width="7%" style="height:10mm">ราคา</th>
+				<th align="center" width="15%" style="height:10mm">จำนวนเงิน</th>
+				<th align="center" width="13%" style="height:10mm">วันที่</th>
+				<th align="center" width="15%" style="height:10mm">จำนวนฉบับ</th>
+				<th align="center" width="7%" style="height:10mm">ราคา</th>
+				<th align="center" width="15%" style="height:10mm">จำนวนเงิน</th>
+			</tr>
+			<% customer_daily = customer.group_by {|c|c.publish_id}%>
+			<% total_price=[]  %>
+			<% customer_daily.each_slice(2) do |c|  %>
+				<tr align="center" >
+					<% c.each do |p_id,c|  %>
+						<%	quantity_daily = customer_daily[p_id].collect(& :quantity).sum
+						freecopy_daily = customer_daily[p_id].collect(& :free_copy).sum
+						w_date = Issue::Publish.where(id: p_id).first.date  
+						if w_date.wday == 0 
+							net_price = @customer.price2
+						else 
+							net_price = @customer.price
+						end
 
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
-				<tr align="center">
-					<td align="center"  style="height:10mm" >
-						<%= @customer.c_address rescue nil %>
-					</td>
-				</tr>
-			</table>
-
-			<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
-				<tr align="center" style="height:10mm">
-					<th align="center" style="height:10mm">Date</th>
-					<th align="center" style="height:10mm">Quantity</th>
-					<th align="center" style="height:10mm">Net Price</th>
-					<th align="center" style="height:10mm">Daily Price</th>
-					<th align="center" style="height:10mm">Date</th>
-					<th align="center" style="height:10mm">Quantity</th>
-					<th align="center" style="height:10mm">Net Price</th>
-					<th align="center" style="height:10mm">Daily Price</th>
-				</tr>
-				<% total_price=[]  %>
-				<% customer.sort.each_slice(2) do |c|  %>
-					<tr align="center" style="height:10mm">
-						<% c.sort.each do |c|%>
-							<% 
-									w_date = Issue::Publish.where(id: c.publish_id).first.date  
-							if w_date.wday == 0 
-								net_price = @customer.price2
-								d_price = c.quantity * net_price rescue nil 
-							else 
-								net_price = @customer.price
-								d_price = c.quantity * net_price rescue nil 
-							end 
-							total_price << d_price rescue nil
-						%>
-					<td align="center" style="height:8mm">
+						if net_price.nil?
+							d_price = 0
+						else
+							d_price = quantity_daily * net_price rescue nil 
+						end
+						total_price << d_price rescue nil	%>
+					<td align="center">
 						<%= w_date  %> 
 					</td> 
-					<td align="center" style="height:8mm">
-						<%= c.quantity %>
+					<td align="center">
+						<%= quantity_daily %>
 					</td>
-					<td align="center" style="height:8mm">
-						<%= net_price rescue nil %>
+					<td align="center">
+						<%= net_price %>
 					</td>
-					<td align="center" style="height:8mm">
-						<%= d_price  rescue nil %>
+					<td align="center">
+						<%= d_price %>
 					</td>
-				<% end  %>
+				<% end %>
 			</tr>
 		<% end  %>
 	</table>
 
-
 	<table border="1px" align="center" cellspacing="0" cellpadding="0" width="742mm">
+		<tr align="left">
+			<td align="left" style="height:10mm" >
+				<ul>
+					<li>วันจันทร์ – วันเสาร์ ฉบับละ .....  <%= @customer.price  rescue nil %>..... บาท </li>
+					<p></p>
+					<li>วันอาทิตย์ ฉบับละ .....<%= @customer.price2  rescue nil %>..... บาท </li>
+					<p></p>
+					<li>เงื่อนไขการชำระเงิน .....30.....วัน </li>
+					<p></p>
+					<li>ครบกำหนดชำระเงิน .....<%= ((@edate.to_date + 1.day)+30.days).strftime("%d/%m/%Y")%>.....</li>
+					<p></p>
+					<br/>
+					<br/>
+					<li><font size="6">รวมจำนวนฉบับทั้งหมด : <%= number_with_delimiter(@customers_group[code].collect(& :quantity).sum) rescue nil %> ฉบับ</font></li>
+					<br/>
+					<li><font size="6">รวมจำนวนเงิน : <%=  number_with_delimiter("%.2f" % total_price.sum) rescue nil %> บาท </font></li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<p></p>
+	<table align="center" cellspacing="0" cellpadding="0" width="742mm">
+		<tr>
+			<td>
+				* หากยอดหนี้ที่ค้างทั้งสิ้นตามที่แจ้งหนี้มานี้ไม่ถูกต้อง ขอโปรดทักท้วงภายใน 7 วัน นับตั้งแต่วันที่ได้รับแจ้งหนี้ฉบับนี้ หากพ้นกำหนด ทางบริษัทฯ จะถือว่ายอดหนี้ดังกล่าวถูกต้องแล้ว
+			</td>
+		</tr>
+	</table>
+	<p></p>
+	<table align="center" width="742mm" >
 		<tr align="center">
-			<td align="center"  style="height:10mm" >
-				Total Price:<%= total_price.sum rescue nil %>
-		</td>
-	</tr>
-</table>
-
-<table align="center" width="742mm" >
-	<tr align="center">
-		<td align="center" style="height:10mm">Operator:</td>
-		<td align="center" style="height:10mm">Inspector:</td>
-		<td align="center" style="height:10mm">Customer:</td>
-	</tr>
-	<tr align="center">
-		<td align="center" style="height:10mm">Date:</td>
-		<td align="center" style="height:10mm">Date:</td>
-		<td align="center" style="height:10mm">Date:</td>
-	</tr>
-</table>
+			<td align="left" style="height:10mm">ผู้จัดทำ</td>
+			<td>____________________</td>
+			<td align="left" style="height:10mm">ผู้ตรวจสอบ</td>
+			<td>____________________</td>
+			<td align="left" style="height:10mm">ผู้รับเอกสาร</td>
+			<td>____________________</td>
+		</tr>
+		<tr align="center">
+			<td align="left" style="height:10mm">วันที่</td>
+			<td>____________________</td>
+			<td align="left" style="height:10mm">วันที่</td>
+			<td>____________________</td>
+			<td align="left" style="height:10mm">วันที่</td>
+			<td>____________________</td>
+		</tr>
+	</table>
 
 </div>
 
-<% end %>
-<!--eprint-1-->
+		<% end %>
+		<!--eprint-1-->
 
-<table>
-	<tr>
-		<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
-		<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
+		<table>
+			<tr>
+				<td><input name="print" value="打 印 | Print" type="button" url="javascript:;" onClick="doPrint('1')"/></td>
+				<td><%= button_to t('back'), issue_publishes_path, method: :get %></td>
 
-	</tr>
-</table>
-<% end %>
+			</tr>
+		</table>
+	<% end %>

@@ -1,0 +1,102 @@
+
+<p>
+<strong>
+	Summary Report of Datasets
+</strong>
+</p>
+
+
+<table>
+	<tr>
+		<th>Index</th>
+		<th>Date</th>
+		<th>Data - 1</th>
+		<th>Data - 2</th>
+		<th>Data - 3</th>
+		<th>Data - 4</th>
+		<th>Data - 5</th>
+	</tr>
+	<% @datasets.each_with_index do |dataset,i| %>
+		<tr>
+			<td> <%= i+1 %></td>
+			<td> <%= dataset.date rescue nil %></td>
+			<td> <%= dataset.data1 rescue nil %></td>
+			<td> <%= dataset.data2 rescue nil %></td>
+			<td> <%= dataset.data3 rescue nil %></td>
+			<td> <%= dataset.data4 rescue nil %></td>
+			<td> <%= dataset.data5 rescue nil %></td>
+		</tr>
+	<% end %>
+	<tr>
+		<td colspan="2">Mean</td>
+		<td> <%= @mean_d1 = (@datasets.sum(:data1)/@data_n).round(2) rescue nil %></td>
+		<td> <%= @mean_d2 = (@datasets.sum(:data2)/@data_n).round(2) rescue nil %></td>
+		<td> <%= @mean_d3 = (@datasets.sum(:data3)/@data_n).round(2) rescue nil %></td>
+		<td> <%= @mean_d4 = (@datasets.sum(:data4)/@data_n).round(2) rescue nil %></td>
+		<td> <%= @mean_d5 = (@datasets.sum(:data5)/@data_n).round(2) rescue nil %></td>
+	</tr>
+	<tr>
+		<td colspan="2">Standard Deviation</td>
+		<td><%= @sd_d1=@datasets.collect(&:data1).standard_deviation.round(2)%></td>
+		<td><%= @sd_d2=@datasets.collect(&:data2).standard_deviation.round(2)%></td>
+		<td><%= @sd_d3=@datasets.collect(&:data3).standard_deviation.round(2)%></td>
+		<td><%= @sd_d4=@datasets.collect(&:data4).standard_deviation.round(2)%></td>
+		<td><%= @sd_d5=@datasets.collect(&:data5).standard_deviation.round(2)%></td>
+	</tr>
+</table>
+
+<%= pie_chart [
+	["SD of Data1", @sd_d1],
+	["SD of Data2", @sd_d2],
+	["SD of Data3", @sd_d3],
+	["SD of Data4", @sd_d4],
+	["SD of Data5", @sd_d5],
+] %>
+
+
+<% @diffdata1 = @datasets.collect(&:data1).map {|d1| d1-@mean_d1} %>
+<% @diffdata2 = @datasets.collect(&:data2).map {|d2| d2-@mean_d2} %>
+<% @diffdata3 = @datasets.collect(&:data3).map {|d3| d3-@mean_d3} %>
+<% @diffdata4 = @datasets.collect(&:data4).map {|d4| d4-@mean_d4} %>
+<% @diffdata5 = @datasets.collect(&:data5).map {|d5| d5-@mean_d5} %>
+
+<table>
+	<tr>
+		<td>Co-variance</td>
+		<td>
+			COV<br/>(Data1,Data2)
+			<br/>
+			<%=@cov12 = (@diffdata1.zip(@diffdata2).map{|d1,d2| d1*d2 }.sum/(@data_n-1)).round(2) rescue nil %>
+		</td>
+		<td>
+			COV<br/>(Data2,Data3)
+			<br/>
+			<%= @cov23 = (@diffdata2.zip(@diffdata3).map{|d2,d3| d2*d3 }.inject(:+)/(@data_n-1)).round(2) rescue nil %>
+		</td>
+		<td>
+			COV<br/>(Data3,Data4)
+			<br/>
+			<%= @cov34 = (@diffdata3.zip(@diffdata4).map{|d3,d4| d3*d4 }.inject(:+)/(@data_n-1)).round(2) rescue nil %>
+		</td>
+		<td>
+			COV<br/>(Data4,Data5)
+			<br/>
+			<%= @cov45 = (@diffdata4.zip(@diffdata5).map{|d4,d5| d4*d5 }.inject(:+)/(@data_n-1)).round(2) rescue nil %>
+		</td>
+	</tr>
+</tr>
+
+</table>
+
+<%= bar_chart [
+	["COV(1,2)", @cov12],
+	["COV(2,3)", @cov23],
+	["COV(3,4)", @cov34],
+	["COV(4,5)", @cov45],
+] %>
+
+<table>
+	<tr>
+		<th><%= button_to 'Back', rimes_path, method: :get %></th>
+	</tr>
+</table>

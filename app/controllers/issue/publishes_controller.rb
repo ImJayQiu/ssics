@@ -29,7 +29,7 @@ class Issue::PublishesController < ApplicationController
 	def pinvoice 
 		@sdate = params[:sdate]
 		@edate = params[:edate]
-		@publish_summary = Issue::Publish.includes(:cpublishes).where(date: @sdate..@edate).order(:id)
+		@publish_summary = Issue::Publish.includes(:cpublishes).where(date: @sdate..@edate).order(:date)
 		@publish_ids = []
 		@publish_summary.each do |ps|
 			@publish_ids<< ps.id

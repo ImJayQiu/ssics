@@ -23,6 +23,10 @@ class Ability
 			can :manage, :issue_return 
 		end	
 
+		if user.role =="rimes"
+			can :manage,:rimes
+		end
+	
 		if user.role =="advertising-广告部"
 			can :view, :advertising
 			can :manage, :advertising_types  
